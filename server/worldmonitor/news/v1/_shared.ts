@@ -195,5 +195,18 @@ export function getProviderCredentials(provider: string): ProviderCredentials | 
     };
   }
 
+  if (provider === 'zhipu') {
+    const apiKey = process.env.ZHIPU_API_KEY;
+    if (!apiKey) return null;
+    return {
+      apiUrl: 'https://open.bigmodel.cn/api/paas/v4/chat/completions',
+      model: process.env.ZHIPU_MODEL || 'glm-4.5-air',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+    };
+  }
+
   return null;
 }

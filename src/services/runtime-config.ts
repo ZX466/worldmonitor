@@ -4,6 +4,8 @@ import { invokeTauri } from './tauri-bridge';
 export type RuntimeSecretKey =
   | 'GROQ_API_KEY'
   | 'OPENROUTER_API_KEY'
+  | 'ZHIPU_API_KEY'
+  | 'ZHIPU_MODEL'
   | 'FRED_API_KEY'
   | 'EIA_API_KEY'
   | 'CLOUDFLARE_API_TOKEN'
@@ -30,6 +32,7 @@ export type RuntimeSecretKey =
 export type RuntimeFeatureId =
   | 'aiGroq'
   | 'aiOpenRouter'
+  | 'aiZhipu'
   | 'economicFred'
   | 'energyEia'
   | 'internetOutages'
@@ -80,6 +83,7 @@ function getSidecarSecretValidateUrl(): string {
 const defaultToggles: Record<RuntimeFeatureId, boolean> = {
   aiGroq: true,
   aiOpenRouter: true,
+  aiZhipu: true,
   economicFred: true,
   energyEia: true,
   internetOutages: true,
@@ -122,6 +126,13 @@ export const RUNTIME_FEATURES: RuntimeFeatureDefinition[] = [
     description: 'Secondary LLM provider for AI summary fallback.',
     requiredSecrets: ['OPENROUTER_API_KEY'],
     fallback: 'Falls back to local browser model only.',
+  },
+  {
+    id: 'aiZhipu',
+    name: 'Zhipu AI summarization',
+    description: 'Zhipu AI GLM-4.5-Air model for AI summary generation.',
+    requiredSecrets: ['ZHIPU_API_KEY'],
+    fallback: 'Falls back to Groq, then OpenRouter, then local browser model.',
   },
   {
     id: 'economicFred',
