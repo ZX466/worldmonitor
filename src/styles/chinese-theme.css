@@ -1,0 +1,704 @@
+/* ============================================================
+   中国风主题配色方案 - 传统中式色彩体系
+   天下观 · 全球态势感知平台
+   ============================================================ */
+
+/* ============================================================
+   字体定义 - 宋体印刷质感 + 书法标题字体
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Ma+Shan+Zheng&display=swap');
+
+:root {
+  /* 背景色 - 宣纸色、藏青色、墨色 */
+  --bg: #0d0a0a; /* 墨色背景 */
+  --bg-secondary: #1a1215; /* 藏红底色 */
+  --surface: #1e1515; /* 朱砂面板色 */
+  --surface-hover: #2a1e1e; /* 朱砂 hover */
+  --surface-active: #3a2020; /* 朱红激活色 */
+
+  /* 边框 - 朱红、铜色 */
+  --border: #8b3a3a; /* 朱红边框 */
+  --border-strong: #c44536; /* 朱红亮边 */
+  --border-subtle: #3a2828; /* 藏红暗边 */
+
+  /* 文字 - 宣纸白、米黄、赭石 */
+  --text: #f7efe6; /* 宣纸白 */
+  --text-secondary: #e8dcc8; /* 米黄 */
+  --text-dim: #c9a882; /* 赭石色 */
+  --text-muted: #a08060; /* 赭石暗 */
+  --text-faint: #8a6c4a; /* 浅棕 */
+  --text-ghost: #664f37; /* 深棕 */
+  --accent: #d42c20; /* 朱红强调色 */
+  --accent-gold: #c9a227; /* 金色强调 */
+
+  /* 叠加层和阴影 - 墨色透明 */
+  --overlay-subtle: rgba(139, 58, 58, 0.05);
+  --overlay-light: rgba(139, 58, 58, 0.1);
+  --overlay-medium: rgba(139, 58, 58, 0.15);
+  --overlay-heavy: rgba(139, 58, 58, 0.25);
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --darken-light: rgba(13, 10, 10, 0.15);
+  --darken-medium: rgba(13, 10, 10, 0.25);
+  --darken-heavy: rgba(13, 10, 10, 0.4);
+
+  /* 滚动条 - 朱红 */
+  --scrollbar-thumb: #8b3a3a;
+  --scrollbar-thumb-hover: #c44536;
+
+  /* 输入框 - 朱砂色 */
+  --input-bg: #251818;
+
+  /* 面板 - 宣纸质感背景 */
+  --panel-bg: #1e1515;
+  --panel-border: #8b3a3a;
+
+  /* 地图配色 - 水墨风格古地图 */
+  --map-bg: #0a0808; /* 深墨背景 */
+  --map-grid: #2a1818; /* 朱砂网格 */
+  --map-country: #1a1212; /* 石青填充 */
+  --map-stroke: #8b3a3a; /* 朱红国界 */
+
+  /* 中文字体栈 - 宋体+黑体 传统印刷质感 */
+  --font-mono: 'Noto Serif SC', '思源宋体', '宋体', 'SimSun', 'SF Mono', monospace;
+  --font-body: 'Noto Serif SC', '思源宋体', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-title: 'Ma Shan Zheng', '马善政毛笔楷体', 'Noto Serif SC', serif;
+}
+
+/* ============================================================
+   语义色修改 - 中式传统色
+   ============================================================ */
+:root {
+  /* 严重级别 - 朱砂、柿红、蜜黄、石绿、石青 */
+  --semantic-critical: #c41e3a; /* 中国红 */
+  --semantic-high: #e65c00; /* 柿红 */
+  --semantic-elevated: #d4a017; /* 金黄 */
+  --semantic-normal: #2e8b57; /* 竹绿 */
+  --semantic-low: #1e4d6b; /* 靛青 */
+  --semantic-info: #4a708b; /* 灰蓝 */
+  --semantic-positive: #228b22; /* 森林绿 */
+
+  /* 威胁级别 */
+  --threat-critical: #c41e3a; /* 中国红 */
+  --threat-high: #ff6347; /* 番茄红 */
+  --threat-medium: #daa520; /* 金菊黄 */
+  --threat-low: #3cb371; /* 春绿 */
+  --threat-info: #4682b4; /* 钢蓝 */
+
+  /* DEFCON级别 - 传统五色 */
+  --defcon-1: #8b0000; /* 暗红 */
+  --defcon-2: #c41e3a; /* 中国红 */
+  --defcon-3: #ff8c00; /* 橙黄 */
+  --defcon-4: #1e90ff; /* 青蓝 */
+  --defcon-5: #228b22; /* 碧绿 */
+
+  /* 状态指示器 */
+  --status-live: #32cd32; /* 亮绿 */
+  --status-cached: #daa520; /* 金黄 */
+  --status-unavailable: #c41e3a; /* 中国红 */
+}
+
+/* ============================================================
+   全局基础样式 - 中国风
+   ============================================================ */
+html {
+  font-family: var(--font-body);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* 标题使用书法字体 */
+h1, h2, h3, .panel-title, .window-title {
+  font-family: var(--font-title);
+  letter-spacing: 2px;
+}
+
+/* ============================================================
+   中式UI元素增强
+   ============================================================ */
+
+/* 面板添加中式边框和宣纸纹理 */
+.panel, .settings-window, .country-deep-dive {
+  border: 1px solid var(--border) !important;
+  box-shadow: 
+    0 4px 20px rgba(139, 58, 58, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  background-image: 
+    linear-gradient(var(--surface), var(--surface)),
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-blend-mode: normal;
+  position: relative;
+  border-radius: 0 !important; /* 中式直角设计 */
+}
+
+/* 面板顶部朱红装饰线 */
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--border) 20%, 
+    var(--border-strong) 50%, 
+    var(--border) 80%, 
+    transparent 100%
+  );
+  opacity: 0.9;
+}
+
+/* 面板左上角装饰 - 印章效果 */
+.panel::after {
+  content: "观";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: var(--font-title);
+  font-size: 10px;
+  color: var(--accent);
+  opacity: 0.3;
+  border: 1px solid var(--accent);
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+/* 按钮中式样式 */
+button, .btn, .toggle-btn {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  border-radius: 0 !important; /* 中式直角 */
+}
+
+button:hover, .btn:hover, .toggle-btn:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(196, 69, 54, 0.3);
+}
+
+button.active, .btn.active, .toggle-btn.active {
+  background: linear-gradient(135deg, var(--surface-active) 0%, var(--surface) 100%);
+  border-color: var(--border-strong);
+  color: var(--accent);
+}
+
+/* 标题栏中式设计 */
+.panel-header, .window-title {
+  font-family: var(--font-title);
+  font-weight: 400;
+  letter-spacing: 4px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 8px;
+  position: relative;
+}
+
+/* 标题栏底部装饰线 */
+.panel-header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--border-strong);
+}
+
+/* 滚动条中式风格 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 0; /* 中式直角设计 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* ============================================================
+   地图控件中式风格
+   ============================================================ */
+.maplibregl-ctrl {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 2px 10px var(--shadow-color) !important;
+  border-radius: 0 !important;
+}
+
+.maplibregl-ctrl button {
+  background: var(--surface) !important;
+  color: var(--text-secondary) !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.maplibregl-ctrl button:hover {
+  background: var(--surface-hover) !important;
+  color: var(--accent) !important;
+}
+
+/* 地图比例尺中式风格 */
+.maplibregl-ctrl-scale {
+  border: 1px solid var(--border) !important;
+  border-top: none !important;
+  background: transparent !important;
+}
+
+/* ============================================================
+   新闻条目中式分隔
+   ============================================================ */
+.news-item, .feed-item {
+  border-bottom: 1px dashed var(--border-subtle);
+  padding: 12px 0;
+  position: relative;
+}
+
+.news-item:last-child, .feed-item:last-child {
+  border-bottom: none;
+}
+
+.news-item-title, .feed-item-title {
+  font-weight: 500;
+  line-height: 1.8;
+  font-family: var(--font-body);
+}
+
+/* 新闻条目左侧装饰点 */
+.news-item::before, .feed-item::before {
+  content: "◆";
+  position: absolute;
+  left: -12px;
+  color: var(--accent);
+  opacity: 0.5;
+  font-size: 8px;
+}
+
+/* ============================================================
+   数据标签中式印章效果
+   ============================================================ */
+.severity-badge, .threat-badge, .tag, .label {
+  border-radius: 0 !important; /* 直角印章效果 */
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: 1px solid currentColor;
+  padding: 3px 8px;
+  font-size: 0.85em;
+  font-family: var(--font-body);
+}
+
+/* 严重级别印章 */
+.severity-badge.critical, .threat-badge.critical {
+  background: rgba(196, 30, 58, 0.15);
+  color: var(--semantic-critical);
+  border-color: var(--semantic-critical);
+}
+
+.severity-badge.high, .threat-badge.high {
+  background: rgba(230, 92, 0, 0.15);
+  color: var(--semantic-high);
+  border-color: var(--semantic-high);
+}
+
+.severity-badge.medium, .threat-badge.medium {
+  background: rgba(212, 160, 23, 0.15);
+  color: var(--semantic-elevated);
+  border-color: var(--semantic-elevated);
+}
+
+.severity-badge.low, .threat-badge.low {
+  background: rgba(46, 139, 87, 0.15);
+  color: var(--semantic-normal);
+  border-color: var(--semantic-normal);
+}
+
+/* ============================================================
+   水墨地图覆盖层
+   ============================================================ */
+#map, .map-container {
+  position: relative;
+}
+
+#map::before, .map-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTexture'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperTexture)' opacity='0.08'/%3E%3C/svg%3E");
+  z-index: 1000;
+  mix-blend-mode: overlay;
+}
+
+/* ============================================================
+   输入框中式风格
+   ============================================================ */
+input, textarea, select {
+  background: var(--input-bg);
+  border: 1px solid var(--border-subtle);
+  color: var(--text);
+  font-family: var(--font-body);
+  border-radius: 0 !important;
+  padding: 8px 12px;
+  transition: all 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 2px rgba(139, 58, 58, 0.2);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ============================================================
+   表格中式风格
+   ============================================================ */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--font-body);
+}
+
+th {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 10px;
+}
+
+td {
+  border: 1px solid var(--border-subtle);
+  padding: 8px 10px;
+}
+
+tr:hover td {
+  background: var(--surface-hover);
+}
+
+/* ============================================================
+   中国风装饰元素
+   ============================================================ */
+
+/* 祥云背景装饰 */
+.chinese-pattern-bg {
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-9 4-9 9 0-3-2-5-5-5s-5 2-5 5 2 5 5 5c-5 0-9 4-9 9s4 9 9 9c-3 0-5 2-5 5s2 5 5 5 5-2 5-5c0 5 4 9 9 9s9-4 9-9c0 3 2 5 5 5s5-2 5-5-2-5-5-5c5 0 9-4 9-9s-4-9-9-9c3 0 5-2 5-5s-2-5-5-5-5 2-5 5c0-5-4-9-9-9z' fill='%238b3a3a' fill-opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* 回字纹边框 */
+.chinese-border {
+  border: 2px solid var(--border);
+  position: relative;
+}
+
+.chinese-border::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid var(--border-subtle);
+  pointer-events: none;
+}
+
+/* 印章效果 */
+.chinese-seal {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 16px;
+  color: var(--accent);
+  background: rgba(196, 30, 58, 0.1);
+}
+
+/* ============================================================
+   状态指示器中式风格
+   ============================================================ */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 0; /* 方形指示器 */
+}
+
+.status-dot.live {
+  background: var(--status-live);
+  box-shadow: 0 0 6px var(--status-live);
+  animation: pulse-glow 2s infinite;
+}
+
+.status-dot.cached {
+  background: var(--status-cached);
+}
+
+.status-dot.unavailable {
+  background: var(--status-unavailable);
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 6px var(--status-live);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 12px var(--status-live);
+  }
+}
+
+/* ============================================================
+   进度条中式风格
+   ============================================================ */
+.progress-bar {
+  height: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-gold) 100%);
+  transition: width 0.3s;
+}
+
+/* ============================================================
+   下拉菜单中式风格
+   ============================================================ */
+.dropdown, .select-wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.dropdown-item:hover {
+  background: var(--surface-hover);
+  color: var(--accent);
+}
+
+/* ============================================================
+   工具提示中式风格
+   ============================================================ */
+.tooltip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-body);
+  border-radius: 0;
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* ============================================================
+   分隔线中式风格
+   ============================================================ */
+hr, .divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--border) 20%, 
+    var(--border-strong) 50%, 
+    var(--border) 80%, 
+    transparent 100%
+  );
+  margin: 16px 0;
+}
+
+/* 虚线分隔 */
+.dashed-divider {
+  border: none;
+  border-top: 1px dashed var(--border-subtle);
+  margin: 12px 0;
+}
+
+/* ============================================================
+   加载动画 - 太极旋转
+   ============================================================ */
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   Header 中式风格
+   ============================================================ */
+.header, .app-header {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+  border-bottom: 2px solid var(--border);
+  position: relative;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--border-strong) 50%, 
+    transparent 100%
+  );
+}
+
+/* Logo 标题样式 */
+.app-title, .logo-text {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  color: var(--text);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   卡片中式风格
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  position: relative;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 4px 16px rgba(139, 58, 58, 0.2);
+}
+
+/* ============================================================
+   弹窗中式风格
+   ============================================================ */
+.modal, .popup {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 0;
+  box-shadow: 0 8px 32px var(--shadow-color);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-title);
+  letter-spacing: 2px;
+}
+
+/* ============================================================
+   标签页中式风格
+   ============================================================ */
+.tabs {
+  border-bottom: 2px solid var(--border);
+}
+
+.tab {
+  border: 1px solid transparent;
+  border-bottom: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  letter-spacing: 1px;
+}
+
+.tab:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.tab.active {
+  background: var(--surface);
+  border-color: var(--border);
+  border-bottom: 2px solid var(--surface);
+  margin-bottom: -2px;
+  color: var(--accent);
+}
+
+/* ============================================================
+   中国风按钮变体
+   ============================================================ */
+
+/* 主要按钮 - 朱红印章风格 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #a02020 100%);
+  border: 2px solid var(--border-strong);
+  color: var(--text);
+  font-family: var(--font-title);
+  letter-spacing: 2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #e03a30 0%, var(--accent) 100%);
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.4);
+}
+
+/* 次要按钮 - 金色边框 */
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.btn-secondary:hover {
+  background: rgba(201, 162, 39, 0.1);
+  border-color: var(--accent-gold);
+}
+
+/* ============================================================
+   深色模式特定调整
+   ============================================================ */
+[data-theme="dark"] {
+  --bg: #0a0707;
+  --bg-secondary: #141010;
+  --surface: #1a1313;
+}
+
+/* ============================================================
+   移动端适配
+   ============================================================ */
+@media (max-width: 768px) {
+  .panel::after {
+    display: none;
+  }
+  
+  .panel-header {
+    letter-spacing: 2px;
+  }
+}

@@ -1,0 +1,64 @@
+# ============================================
+# World Monitor - Systemd 服务配置
+# 阿里云轻量应用服务器部署
+# ============================================
+#
+# 安装服务:
+#   sudo cp worldmonitor.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable worldmonitor
+#   sudo systemctl start worldmonitor
+#
+# 管理命令:
+#   查看状态: sudo systemctl status worldmonitor
+#   启动服务: sudo systemctl start worldmonitor
+#   停止服务: sudo systemctl stop worldmonitor
+#   重启服务: sudo systemctl restart worldmonitor
+#   查看日志: sudo journalctl -u worldmonitor -f
+#
+# ============================================
+
+[Unit]
+Description=World Monitor - 全球情报监控平台
+Documentation=https://github.com/koala73/worldmonitor
+After=network.target
+
+[Service]
+Type=simple
+User=worldmonitor
+Group=worldmonitor
+WorkingDirectory=/opt/worldmonitor
+
+# 环境变量
+Environment="NODE_ENV=production"
+Environment="HOST=0.0.0.0"
+Environment="PORT=3000"
+EnvironmentFile=/opt/worldmonitor/.env
+
+# 启动命令 - 使用 vite preview
+ExecStart=/usr/bin/npx vite preview --host 0.0.0.0 --port 3000
+
+# 重启策略
+Restart=always
+RestartSec=10
+
+# 资源限制
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# 安全设置
+NoNewPrivileges=true
+PrivateTmp=true
+
+# 日志
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=worldmonitor
+
+# 优雅关闭
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

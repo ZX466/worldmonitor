@@ -1,0 +1,49 @@
+# ============================================
+# World Monitor - Vercel API 部署配置
+# 混合部署方案：API 部署到 Vercel，前端部署到阿里云
+# ============================================
+
+# Vercel 项目配置
+vercel_project_name: worldmonitor-api
+
+# 构建配置
+build:
+  command: npm run build:full
+  output_directory: dist
+
+# 函数配置
+functions:
+  api/**/*.js:
+    runtime: nodejs20.x
+  api/**/*.ts:
+    runtime: nodejs20.x
+
+# 环境变量（需要在 Vercel Dashboard 中配置）
+# 必需的环境变量：
+# - GROQ_API_KEY: Groq API 密钥（AI 摘要）
+# - OPENROUTER_API_KEY: OpenRouter API 密钥（备用 AI）
+# - UPSTASH_REDIS_REST_URL: Redis 缓存 URL
+# - UPSTASH_REDIS_REST_TOKEN: Redis 缓存令牌
+# 
+# 可选的环境变量：
+# - FINNHUB_API_KEY: 股票数据
+# - EIA_API_KEY: 能源数据
+# - FRED_API_KEY: 经济数据
+# - ACLED_ACCESS_TOKEN: 冲突数据
+# - NASA_FIRMS_API_KEY: 火灾检测
+
+# 路由配置
+routes:
+  - src: /api/(.*)
+    dest: /api/$1
+  
+  - src: /(.*)
+    dest: /index.html
+
+# 区域配置（选择离中国最近的区域）
+regions:
+  - hnd1  # Tokyo, Japan
+  - sin1  # Singapore
+
+# 域名配置（部署后在 Vercel Dashboard 中配置）
+# 建议域名：api.worldmonitor.com 或 worldmonitor-api.vercel.app
