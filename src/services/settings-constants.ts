@@ -2,6 +2,7 @@ import type { RuntimeSecretKey, RuntimeFeatureId } from './runtime-config';
 
 export const SIGNUP_URLS: Partial<Record<RuntimeSecretKey, string>> = {
   GROQ_API_KEY: 'https://console.groq.com/keys',
+  ZHIPU_API_KEY: 'https://open.bigmodel.cn/',
   OPENROUTER_API_KEY: 'https://openrouter.ai/settings/keys',
   FRED_API_KEY: 'https://fred.stlouisfed.org/docs/api/api_key.html',
   EIA_API_KEY: 'https://www.eia.gov/opendata/register.php',
@@ -19,6 +20,7 @@ export const SIGNUP_URLS: Partial<Record<RuntimeSecretKey, string>> = {
   UCDP_ACCESS_TOKEN: 'https://ucdp.uu.se/apidocs/',
   OLLAMA_API_URL: 'https://ollama.com/download',
   OLLAMA_MODEL: 'https://ollama.com/library',
+  ZHIPU_MODEL: 'https://open.bigmodel.cn/',
   WTO_API_KEY: 'https://apiportal.wto.org/',
   AVIATIONSTACK_API: 'https://aviationstack.com/signup/free',
   ICAO_API_KEY: 'https://dataservices.icao.int/',
@@ -27,6 +29,7 @@ export const SIGNUP_URLS: Partial<Record<RuntimeSecretKey, string>> = {
 export const PLAINTEXT_KEYS = new Set<RuntimeSecretKey>([
   'OLLAMA_API_URL',
   'OLLAMA_MODEL',
+  'ZHIPU_MODEL',
   'WS_RELAY_URL',
   'VITE_OPENSKY_RELAY_URL',
 ]);
@@ -35,6 +38,7 @@ export const MASKED_SENTINEL = '__WM_MASKED__';
 
 export const HUMAN_LABELS: Record<RuntimeSecretKey, string> = {
   GROQ_API_KEY: 'Groq API Key',
+  ZHIPU_API_KEY: 'Zhipu AI API Key',
   OPENROUTER_API_KEY: 'OpenRouter API Key',
   FRED_API_KEY: 'FRED API Key',
   EIA_API_KEY: 'EIA API Key',
@@ -54,6 +58,7 @@ export const HUMAN_LABELS: Record<RuntimeSecretKey, string> = {
   UCDP_ACCESS_TOKEN: 'UCDP Access Token',
   OLLAMA_API_URL: 'Ollama Server URL',
   OLLAMA_MODEL: 'Ollama Model',
+  ZHIPU_MODEL: 'Zhipu AI Model',
   WORLDMONITOR_API_KEY: 'World Monitor License Key',
   WTO_API_KEY: 'WTO API Key',
   AVIATIONSTACK_API: 'AviationStack API Key',
@@ -70,7 +75,7 @@ export const SETTINGS_CATEGORIES: SettingsCategory[] = [
   {
     id: 'ai',
     label: 'AI & Summarization',
-    features: ['aiOllama', 'aiGroq', 'aiOpenRouter'],
+    features: ['aiOllama', 'aiZhipu', 'aiGroq', 'aiOpenRouter'],
   },
   {
     id: 'economy',
