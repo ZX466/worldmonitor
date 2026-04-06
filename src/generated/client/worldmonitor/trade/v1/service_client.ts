@@ -143,7 +143,7 @@ export class TradeServiceClient {
   }
 
   async getTradeRestrictions(req: GetTradeRestrictionsRequest, options?: TradeServiceCallOptions): Promise<GetTradeRestrictionsResponse> {
-    let path = "/api/trade/v1/get-trade-restrictions";
+    const path = "/api/trade/v1/get-trade-restrictions";
     const params = new URLSearchParams();
     if (req.countries && req.countries.length > 0) req.countries.forEach(v => params.append("countries", v));
     if (req.limit != null && req.limit !== 0) params.set("limit", String(req.limit));
@@ -169,7 +169,7 @@ export class TradeServiceClient {
   }
 
   async getTariffTrends(req: GetTariffTrendsRequest, options?: TradeServiceCallOptions): Promise<GetTariffTrendsResponse> {
-    let path = "/api/trade/v1/get-tariff-trends";
+    const path = "/api/trade/v1/get-tariff-trends";
     const params = new URLSearchParams();
     if (req.reportingCountry != null && req.reportingCountry !== "") params.set("reporting_country", String(req.reportingCountry));
     if (req.partnerCountry != null && req.partnerCountry !== "") params.set("partner_country", String(req.partnerCountry));
@@ -197,7 +197,7 @@ export class TradeServiceClient {
   }
 
   async getTradeFlows(req: GetTradeFlowsRequest, options?: TradeServiceCallOptions): Promise<GetTradeFlowsResponse> {
-    let path = "/api/trade/v1/get-trade-flows";
+    const path = "/api/trade/v1/get-trade-flows";
     const params = new URLSearchParams();
     if (req.reportingCountry != null && req.reportingCountry !== "") params.set("reporting_country", String(req.reportingCountry));
     if (req.partnerCountry != null && req.partnerCountry !== "") params.set("partner_country", String(req.partnerCountry));
@@ -224,7 +224,7 @@ export class TradeServiceClient {
   }
 
   async getTradeBarriers(req: GetTradeBarriersRequest, options?: TradeServiceCallOptions): Promise<GetTradeBarriersResponse> {
-    let path = "/api/trade/v1/get-trade-barriers";
+    const path = "/api/trade/v1/get-trade-barriers";
     const params = new URLSearchParams();
     if (req.countries && req.countries.length > 0) req.countries.forEach(v => params.append("countries", v));
     if (req.measureType != null && req.measureType !== "") params.set("measure_type", String(req.measureType));

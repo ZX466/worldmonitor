@@ -1,12 +1,12 @@
+import { isStorageQuotaExceeded, isQuotaError, markStorageQuotaExceeded } from '@/utils';
 import { isDesktopRuntime } from './runtime';
 import { invokeTauri } from './tauri-bridge';
-import { isStorageQuotaExceeded, isQuotaError, markStorageQuotaExceeded } from '@/utils';
 
-type CacheEnvelope<T> = {
+interface CacheEnvelope<T> {
   key: string;
   updatedAt: number;
   data: T;
-};
+}
 
 const CACHE_PREFIX = 'worldmonitor-persistent-cache:';
 const CACHE_DB_NAME = 'worldmonitor_persistent_cache';

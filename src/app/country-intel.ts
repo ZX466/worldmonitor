@@ -1,13 +1,19 @@
 import type { AppContext, AppModule, CountryBriefSignals } from '@/app/app-context';
-import type { TimelineEvent } from '@/components/CountryTimeline';
-import { CountryTimeline } from '@/components/CountryTimeline';
 import type {
   CountryDeepDiveEconomicIndicator,
   CountryDeepDiveMilitarySummary,
   CountryDeepDiveSignalDetails,
 } from '@/components/CountryBriefPanel';
 import { CountryDeepDivePanel } from '@/components/CountryDeepDivePanel';
-import { reverseGeocode } from '@/utils/reverse-geocode';
+import { CountryTimeline } from '@/components/CountryTimeline';
+import type { TimelineEvent } from '@/components/CountryTimeline';
+import { openStoryModal } from '@/components/StoryModal';
+import type { StrategicPosturePanel } from '@/components/StrategicPosturePanel';
+import { MILITARY_BASES } from '@/config';
+import { BETA_MODE } from '@/config/beta';
+import { MarketServiceClient } from '@/generated/client/worldmonitor/market/v1/service_client';
+import { isHeadlineMemoryEnabled } from '@/services/ai-flow-settings';
+import { trackCountrySelected, trackCountryBriefOpened } from '@/services/analytics';
 import {
   getCountryAtCoordinates,
   getCountryCentroid,
@@ -23,24 +29,18 @@ import { dataFreshness } from '@/services/data-freshness';
 import { fetchCountryMarkets } from '@/services/prediction';
 import { collectStoryData } from '@/services/story-data';
 import { renderStoryToCanvas } from '@/services/story-renderer';
-import { openStoryModal } from '@/components/StoryModal';
-import { MarketServiceClient } from '@/generated/client/worldmonitor/market/v1/service_client';
-import { BETA_MODE } from '@/config/beta';
-import { MILITARY_BASES } from '@/config';
 import { mlWorker } from '@/services/ml-worker';
-import { isHeadlineMemoryEnabled } from '@/services/ai-flow-settings';
 import { t } from '@/services/i18n';
-import { trackCountrySelected, trackCountryBriefOpened } from '@/services/analytics';
-import type { StrategicPosturePanel } from '@/components/StrategicPosturePanel';
 import type { NewsItem } from '@/types';
 import { getNearbyInfrastructure } from '@/services/related-assets';
+import { reverseGeocode } from '@/utils/reverse-geocode';
 
 type IntlDisplayNamesCtor = new (
   locales: string | string[],
   options: { type: 'region' }
 ) => { of: (code: string) => string | undefined };
 
-type CountryStockSnapshot = {
+interface CountryStockSnapshot {
   available: boolean;
   code: string;
   symbol: string;
@@ -48,7 +48,7 @@ type CountryStockSnapshot = {
   price: string;
   weekChangePercent: string;
   currency: string;
-};
+}
 
 export class CountryIntelManager implements AppModule {
   private ctx: AppContext;

@@ -1,7 +1,3 @@
-import { Panel } from './Panel';
-import { sanitizeUrl } from '@/utils/sanitize';
-import { t } from '@/services/i18n';
-import { h, replaceChildren } from '@/utils/dom-utils';
 import {
   getIntelTopics,
   fetchTopicIntelligence,
@@ -11,6 +7,10 @@ import {
   type IntelTopic,
   type TopicIntelligence,
 } from '@/services/gdelt-intel';
+import { t } from '@/services/i18n';
+import { h, replaceChildren } from '@/utils/dom-utils';
+import { sanitizeUrl } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 export class GdeltIntelPanel extends Panel {
   private activeTopic: IntelTopic = getIntelTopics()[0]!;

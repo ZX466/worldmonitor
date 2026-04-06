@@ -4,10 +4,10 @@
  * and geocodes curated RSS items via inferGeoHubsFromTitle.
  */
 
-import type { HappyContentCategory } from './positive-classifier';
 import { PositiveEventsServiceClient } from '@/generated/client/worldmonitor/positive_events/v1/service_client';
-import { inferGeoHubsFromTitle } from './geo-hub-index';
 import { createCircuitBreaker } from '@/utils';
+import { inferGeoHubsFromTitle } from './geo-hub-index';
+import type { HappyContentCategory } from './positive-classifier';
 
 export interface PositiveGeoEvent {
   lat: number;

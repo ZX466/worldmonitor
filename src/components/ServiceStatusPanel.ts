@@ -1,17 +1,17 @@
 
-import { Panel } from './Panel';
-import { t } from '@/services/i18n';
-import { getLocalApiPort, isDesktopRuntime } from '@/services/runtime';
 import {
   getDesktopReadinessChecks,
   getKeyBackedAvailabilitySummary,
   getNonParityFeatures,
 } from '@/services/desktop-readiness';
+import { t } from '@/services/i18n';
 import {
   fetchServiceStatuses,
   type ServiceStatusResult as ServiceStatus,
 } from '@/services/infrastructure';
+import { getLocalApiPort, isDesktopRuntime } from '@/services/runtime';
 import { h, replaceChildren, type DomChild } from '@/utils/dom-utils';
+import { Panel } from './Panel';
 
 interface LocalBackendStatus {
   enabled?: boolean;

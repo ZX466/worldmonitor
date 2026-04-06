@@ -1,8 +1,8 @@
-import { Panel } from './Panel';
-import { escapeHtml } from '@/utils/sanitize';
 import type { GivingSummary, PlatformGiving, CategoryBreakdown } from '@/services/giving';
 import { formatCurrency, formatPercent, getActivityColor, getTrendIcon, getTrendColor } from '@/services/giving';
 import { t } from '@/services/i18n';
+import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 type GivingTab = 'platforms' | 'categories' | 'crypto' | 'institutional';
 

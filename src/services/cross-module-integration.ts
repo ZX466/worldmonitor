@@ -1,10 +1,10 @@
-import { getLocationName, type GeoConvergenceAlert } from './geo-convergence';
-import type { CountryScore } from './country-instability';
-import type { CascadeResult, CascadeImpactLevel } from '@/types';
-import { calculateCII, isInLearningMode } from './country-instability';
-import { getCountryNameByCode } from './country-geometry';
 import { t } from '@/services/i18n';
 import type { TheaterPostureSummary } from '@/services/military-surge';
+import type { CascadeResult, CascadeImpactLevel } from '@/types';
+import { getCountryNameByCode } from './country-geometry';
+import type { CountryScore } from './country-instability';
+import { calculateCII, isInLearningMode } from './country-instability';
+import { getLocationName, type GeoConvergenceAlert } from './geo-convergence';
 
 export type AlertPriority = 'critical' | 'high' | 'medium' | 'low';
 export type AlertType = 'convergence' | 'cii_spike' | 'cascade' | 'composite';

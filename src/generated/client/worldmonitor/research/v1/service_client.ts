@@ -158,7 +158,7 @@ export class ResearchServiceClient {
   }
 
   async listArxivPapers(req: ListArxivPapersRequest, options?: ResearchServiceCallOptions): Promise<ListArxivPapersResponse> {
-    let path = "/api/research/v1/list-arxiv-papers";
+    const path = "/api/research/v1/list-arxiv-papers";
     const params = new URLSearchParams();
     if (req.pageSize != null && req.pageSize !== 0) params.set("page_size", String(req.pageSize));
     if (req.cursor != null && req.cursor !== "") params.set("cursor", String(req.cursor));
@@ -186,7 +186,7 @@ export class ResearchServiceClient {
   }
 
   async listTrendingRepos(req: ListTrendingReposRequest, options?: ResearchServiceCallOptions): Promise<ListTrendingReposResponse> {
-    let path = "/api/research/v1/list-trending-repos";
+    const path = "/api/research/v1/list-trending-repos";
     const params = new URLSearchParams();
     if (req.pageSize != null && req.pageSize !== 0) params.set("page_size", String(req.pageSize));
     if (req.cursor != null && req.cursor !== "") params.set("cursor", String(req.cursor));
@@ -214,7 +214,7 @@ export class ResearchServiceClient {
   }
 
   async listHackernewsItems(req: ListHackernewsItemsRequest, options?: ResearchServiceCallOptions): Promise<ListHackernewsItemsResponse> {
-    let path = "/api/research/v1/list-hackernews-items";
+    const path = "/api/research/v1/list-hackernews-items";
     const params = new URLSearchParams();
     if (req.pageSize != null && req.pageSize !== 0) params.set("page_size", String(req.pageSize));
     if (req.cursor != null && req.cursor !== "") params.set("cursor", String(req.cursor));
@@ -241,7 +241,7 @@ export class ResearchServiceClient {
   }
 
   async listTechEvents(req: ListTechEventsRequest, options?: ResearchServiceCallOptions): Promise<ListTechEventsResponse> {
-    let path = "/api/research/v1/list-tech-events";
+    const path = "/api/research/v1/list-tech-events";
     const params = new URLSearchParams();
     if (req.type != null && req.type !== "") params.set("type", String(req.type));
     if (req.mappable) params.set("mappable", String(req.mappable));

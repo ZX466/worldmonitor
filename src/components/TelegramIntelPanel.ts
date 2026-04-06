@@ -1,13 +1,13 @@
-import { Panel } from './Panel';
-import { sanitizeUrl } from '@/utils/sanitize';
 import { t } from '@/services/i18n';
-import { h, replaceChildren } from '@/utils/dom-utils';
 import {
   TELEGRAM_TOPICS,
   formatTelegramTime,
   type TelegramItem,
   type TelegramFeedResponse,
 } from '@/services/telegram-intel';
+import { h, replaceChildren } from '@/utils/dom-utils';
+import { sanitizeUrl } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 export class TelegramIntelPanel extends Panel {
   private items: TelegramItem[] = [];

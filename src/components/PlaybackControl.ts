@@ -1,5 +1,5 @@
-import { getSnapshotTimestamps, getSnapshotAt, type DashboardSnapshot } from '@/services/storage';
 import { t } from '@/services/i18n';
+import { getSnapshotTimestamps, getSnapshotAt, type DashboardSnapshot } from '@/services/storage';
 
 export class PlaybackControl {
   private element: HTMLElement;

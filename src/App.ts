@@ -1,5 +1,26 @@
-import type { Monitor, PanelConfig, MapLayers } from '@/types';
 import type { AppContext } from '@/app/app-context';
+import { CountryIntelManager } from '@/app/country-intel';
+import { DataLoaderManager } from '@/app/data-loader';
+import { DesktopUpdater } from '@/app/desktop-updater';
+import { EventHandlerManager } from '@/app/event-handlers';
+import { PanelLayoutManager } from '@/app/panel-layout';
+import { RefreshScheduler } from '@/app/refresh-scheduler';
+import { SearchManager } from '@/app/search-manager';
+import { SignalModal, IntelligenceGapBadge, BreakingNewsBanner } from '@/components';
+import { initDB, cleanOldSnapshots, isAisConfigured, initAisStream, isOutagesConfigured, disconnectAisStream } from '@/services';
+import { mlWorker } from '@/services/ml-worker';
+import { getAiFlowSettings, subscribeAiFlowChange, isHeadlineMemoryEnabled } from '@/services/ai-flow-settings';
+import { startLearning } from '@/services/country-instability';
+import { dataFreshness } from '@/services/data-freshness';
+import { loadFromStorage, parseMapUrlState, saveToStorage, isMobileDevice } from '@/utils';
+import type { ParsedMapUrlState } from '@/utils';
+import { initBreakingNewsAlerts, destroyBreakingNewsAlerts } from '@/services/breaking-news-alerts';
+import type { ServiceStatusPanel } from '@/components/ServiceStatusPanel';
+import type { StablecoinPanel } from '@/components/StablecoinPanel';
+import type { ETFFlowsPanel } from '@/components/ETFFlowsPanel';
+import type { MacroSignalsPanel } from '@/components/MacroSignalsPanel';
+import type { StrategicPosturePanel } from '@/components/StrategicPosturePanel';
+import type { StrategicRiskPanel } from '@/components/StrategicRiskPanel';
 import {
   REFRESH_INTERVALS,
   DEFAULT_PANELS,
@@ -8,36 +29,14 @@ import {
   STORAGE_KEYS,
   SITE_VARIANT,
 } from '@/config';
-import { initDB, cleanOldSnapshots, isAisConfigured, initAisStream, isOutagesConfigured, disconnectAisStream } from '@/services';
-import { mlWorker } from '@/services/ml-worker';
-import { getAiFlowSettings, subscribeAiFlowChange, isHeadlineMemoryEnabled } from '@/services/ai-flow-settings';
-import { startLearning } from '@/services/country-instability';
-import { dataFreshness } from '@/services/data-freshness';
-import { loadFromStorage, parseMapUrlState, saveToStorage, isMobileDevice } from '@/utils';
-import type { ParsedMapUrlState } from '@/utils';
-import { SignalModal, IntelligenceGapBadge, BreakingNewsBanner } from '@/components';
-import { initBreakingNewsAlerts, destroyBreakingNewsAlerts } from '@/services/breaking-news-alerts';
-import type { ServiceStatusPanel } from '@/components/ServiceStatusPanel';
-import type { StablecoinPanel } from '@/components/StablecoinPanel';
-import type { ETFFlowsPanel } from '@/components/ETFFlowsPanel';
-import type { MacroSignalsPanel } from '@/components/MacroSignalsPanel';
-import type { StrategicPosturePanel } from '@/components/StrategicPosturePanel';
-import type { StrategicRiskPanel } from '@/components/StrategicRiskPanel';
 import { isDesktopRuntime } from '@/services/runtime';
 import { BETA_MODE } from '@/config/beta';
-import { trackEvent, trackDeeplinkOpened } from '@/services/analytics';
 import { preloadCountryGeometry, getCountryNameByCode } from '@/services/country-geometry';
 import { initI18n } from '@/services/i18n';
-
 import { computeDefaultDisabledSources, getLocaleBoostedSources, getTotalFeedCount } from '@/config/feeds';
+import { trackEvent, trackDeeplinkOpened } from '@/services/analytics';
 import { fetchBootstrapData } from '@/services/bootstrap';
-import { DesktopUpdater } from '@/app/desktop-updater';
-import { CountryIntelManager } from '@/app/country-intel';
-import { SearchManager } from '@/app/search-manager';
-import { RefreshScheduler } from '@/app/refresh-scheduler';
-import { PanelLayoutManager } from '@/app/panel-layout';
-import { DataLoaderManager } from '@/app/data-loader';
-import { EventHandlerManager } from '@/app/event-handlers';
+import type { Monitor, PanelConfig, MapLayers } from '@/types';
 import { resolveUserRegion } from '@/utils/user-location';
 
 const CYBER_LAYER_ENABLED = import.meta.env.VITE_ENABLE_CYBER_LAYER === 'true';
@@ -181,7 +180,7 @@ export class App {
       saveToStorage(STORAGE_KEYS.panels, panelSettings);
     }
 
-    let initialUrlState: ParsedMapUrlState | null = parseMapUrlState(window.location.search, mapLayers);
+    const initialUrlState: ParsedMapUrlState | null = parseMapUrlState(window.location.search, mapLayers);
     if (initialUrlState.layers) {
       if (currentVariant === 'tech') {
         const geoLayers: (keyof MapLayers)[] = ['conflicts', 'bases', 'hotspots', 'nuclear', 'irradiators', 'sanctions', 'military', 'protests', 'pipelines', 'waterways', 'ais', 'flights', 'spaceports', 'minerals'];

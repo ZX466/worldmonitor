@@ -1,7 +1,7 @@
-import { escapeHtml } from '@/utils/sanitize';
-import { t } from '@/services/i18n';
-import { trackSearchUsed } from '@/services/analytics';
 import { COMMANDS, type Command } from '@/config/commands';
+import { trackSearchUsed } from '@/services/analytics';
+import { t } from '@/services/i18n';
+import { escapeHtml } from '@/utils/sanitize';
 
 interface CommandResult {
   command: Command;

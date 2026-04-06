@@ -5,8 +5,8 @@
  * Logs analysis to console for comparison & improvement
  */
 
-import { mlWorker } from './ml-worker';
 import type { ClusteredEvent } from '@/types';
+import { mlWorker } from './ml-worker';
 
 interface NEREntity {
   text: string;

@@ -9,9 +9,9 @@
  */
 
 import type { ClusteredEvent, FocalPoint, FocalPointSummary, EntityMention } from '@/types';
-import type { SignalSummary, CountrySignalCluster, SignalType } from './signal-aggregator';
 import { extractEntitiesFromClusters, type NewsEntityContext } from './entity-extraction';
 import { getEntityIndex, type EntityIndex } from './entity-index';
+import type { SignalSummary, CountrySignalCluster, SignalType } from './signal-aggregator';
 
 const SIGNAL_TYPE_LABELS: Record<SignalType, string> = {
   internet_outage: 'internet outage',

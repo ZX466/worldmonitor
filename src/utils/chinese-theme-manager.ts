@@ -3,9 +3,9 @@
  * 天下观 · 中国风主题切换和配置
  */
 
-import { chineseTitle } from '@/config/chinese-titles';
-import { applyChineseMapStyle, getChineseMapStyle } from '@/config/chinese-map-style';
 import { registerChineseDecoration } from '@/components/ChineseDecoration';
+import { applyChineseMapStyle, getChineseMapStyle } from '@/config/chinese-map-style';
+import { chineseTitle } from '@/config/chinese-titles';
 
 /**
  * 主题配置接口

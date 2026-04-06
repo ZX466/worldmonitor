@@ -1,13 +1,13 @@
-import { Panel } from './Panel';
-import { fetchLiveVideoInfo } from '@/services/live-news';
-import { isDesktopRuntime, getRemoteApiBaseUrl, getApiBaseUrl, getLocalApiPort } from '@/services/runtime';
-import { t } from '../services/i18n';
-import { loadFromStorage, saveToStorage } from '@/utils';
 import { STORAGE_KEYS, SITE_VARIANT } from '@/config';
 import { getStreamQuality } from '@/services/ai-flow-settings';
+import { fetchLiveVideoInfo } from '@/services/live-news';
+import { isDesktopRuntime, getRemoteApiBaseUrl, getApiBaseUrl, getLocalApiPort } from '@/services/runtime';
+import { loadFromStorage, saveToStorage } from '@/utils';
+import { t } from '../services/i18n';
+import { Panel } from './Panel';
 
 // YouTube IFrame Player API types
-type YouTubePlayer = {
+interface YouTubePlayer {
   mute(): void;
   unMute(): void;
   playVideo(): void;
@@ -18,7 +18,7 @@ type YouTubePlayer = {
   getIframe?(): HTMLIFrameElement;
   getVolume?(): number;
   destroy(): void;
-};
+}
 
 type YouTubePlayerConstructor = new (
   elementId: string | HTMLElement,
@@ -33,9 +33,9 @@ type YouTubePlayerConstructor = new (
   },
 ) => YouTubePlayer;
 
-type YouTubeNamespace = {
+interface YouTubeNamespace {
   Player: YouTubePlayerConstructor;
-};
+}
 
 declare global {
   interface Window {

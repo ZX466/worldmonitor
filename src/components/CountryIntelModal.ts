@@ -1,12 +1,11 @@
 /**
  * CountryIntelModal - Shows AI-generated intelligence brief when user clicks a country
  */
-import { escapeHtml } from '@/utils/sanitize';
-import { t } from '@/services/i18n';
-import { sanitizeUrl } from '@/utils/sanitize';
-import { getCSSColor } from '@/utils';
 import type { CountryScore } from '@/services/country-instability';
+import { t } from '@/services/i18n';
 import type { PredictionMarket } from '@/services/prediction';
+import { getCSSColor } from '@/utils';
+import { escapeHtml , sanitizeUrl } from '@/utils/sanitize';
 
 interface CountryIntelData {
   brief: string;

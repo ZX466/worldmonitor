@@ -1,5 +1,5 @@
-import { Panel } from './Panel';
 import { GULF_INVESTMENTS } from '@/config/gulf-fdi';
+import { t } from '@/services/i18n';
 import type {
   GulfInvestment,
   GulfInvestmentSector,
@@ -8,7 +8,7 @@ import type {
   GulfInvestmentStatus,
 } from '@/types';
 import { escapeHtml } from '@/utils/sanitize';
-import { t } from '@/services/i18n';
+import { Panel } from './Panel';
 
 interface InvestmentFilters {
   investingCountry: GulfInvestorCountry | 'ALL';

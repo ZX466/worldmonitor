@@ -1,8 +1,8 @@
-import { Panel } from './Panel';
-import { escapeHtml } from '@/utils/sanitize';
-import type { PopulationExposure } from '@/types';
-import { formatPopulation } from '@/services/population-exposure';
 import { t } from '@/services/i18n';
+import { formatPopulation } from '@/services/population-exposure';
+import type { PopulationExposure } from '@/types';
+import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 export class PopulationExposurePanel extends Panel {
   private exposures: PopulationExposure[] = [];

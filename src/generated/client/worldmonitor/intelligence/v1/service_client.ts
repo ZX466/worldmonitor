@@ -204,7 +204,7 @@ export class IntelligenceServiceClient {
   }
 
   async getRiskScores(req: GetRiskScoresRequest, options?: IntelligenceServiceCallOptions): Promise<GetRiskScoresResponse> {
-    let path = "/api/intelligence/v1/get-risk-scores";
+    const path = "/api/intelligence/v1/get-risk-scores";
     const params = new URLSearchParams();
     if (req.region != null && req.region !== "") params.set("region", String(req.region));
     const url = this.baseURL + path + (params.toString() ? "?" + params.toString() : "");
@@ -229,7 +229,7 @@ export class IntelligenceServiceClient {
   }
 
   async getPizzintStatus(req: GetPizzintStatusRequest, options?: IntelligenceServiceCallOptions): Promise<GetPizzintStatusResponse> {
-    let path = "/api/intelligence/v1/get-pizzint-status";
+    const path = "/api/intelligence/v1/get-pizzint-status";
     const params = new URLSearchParams();
     if (req.includeGdelt) params.set("include_gdelt", String(req.includeGdelt));
     const url = this.baseURL + path + (params.toString() ? "?" + params.toString() : "");
@@ -254,7 +254,7 @@ export class IntelligenceServiceClient {
   }
 
   async classifyEvent(req: ClassifyEventRequest, options?: IntelligenceServiceCallOptions): Promise<ClassifyEventResponse> {
-    let path = "/api/intelligence/v1/classify-event";
+    const path = "/api/intelligence/v1/classify-event";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -303,7 +303,7 @@ export class IntelligenceServiceClient {
   }
 
   async searchGdeltDocuments(req: SearchGdeltDocumentsRequest, options?: IntelligenceServiceCallOptions): Promise<SearchGdeltDocumentsResponse> {
-    let path = "/api/intelligence/v1/search-gdelt-documents";
+    const path = "/api/intelligence/v1/search-gdelt-documents";
     const params = new URLSearchParams();
     if (req.query != null && req.query !== "") params.set("query", String(req.query));
     if (req.maxRecords != null && req.maxRecords !== 0) params.set("max_records", String(req.maxRecords));
@@ -332,7 +332,7 @@ export class IntelligenceServiceClient {
   }
 
   async deductSituation(req: DeductSituationRequest, options?: IntelligenceServiceCallOptions): Promise<DeductSituationResponse> {
-    let path = "/api/intelligence/v1/deduct-situation";
+    const path = "/api/intelligence/v1/deduct-situation";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {

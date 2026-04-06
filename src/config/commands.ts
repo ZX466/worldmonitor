@@ -1,5 +1,5 @@
-import type { MapLayers } from '@/types';
 import { CURATED_COUNTRIES } from '@/config/countries';
+import type { MapLayers } from '@/types';
 
 export interface Command {
   id: string;

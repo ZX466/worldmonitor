@@ -12,8 +12,8 @@ import {
   getFilteredChannelRegions,
 } from '@/components/LiveNewsPanel';
 import { t } from '@/services/i18n';
-import { escapeHtml } from '@/utils/sanitize';
 import { isDesktopRuntime, getRemoteApiBaseUrl } from '@/services/runtime';
+import { escapeHtml } from '@/utils/sanitize';
 import { resolveUserCountryCode } from '@/utils/user-location';
 
 /** Builds a stable custom channel id from a YouTube handle (e.g. @Foo -> custom-foo). */

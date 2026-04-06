@@ -1,10 +1,10 @@
-import { Panel } from './Panel';
-import { IntelligenceServiceClient } from '@/generated/client/worldmonitor/intelligence/v1/service_client';
-import { h, replaceChildren } from '@/utils/dom-utils';
-import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import { marked } from 'marked';
+import { IntelligenceServiceClient } from '@/generated/client/worldmonitor/intelligence/v1/service_client';
 import type { NewsItem, DeductContextDetail } from '@/types';
+import { h, replaceChildren } from '@/utils/dom-utils';
 import { buildNewsContext } from '@/utils/news-context';
+import { Panel } from './Panel';
 
 const client = new IntelligenceServiceClient('', { fetch: (...args) => globalThis.fetch(...args) });
 

@@ -5,8 +5,8 @@ import {
   type AnomalyType as ProtoAnomalyType,
   type ListClimateAnomaliesResponse,
 } from '@/generated/client/worldmonitor/climate/v1/service_client';
-import { createCircuitBreaker } from '@/utils';
 import { getHydratedData } from '@/services/bootstrap';
+import { createCircuitBreaker } from '@/utils';
 
 // Re-export consumer-friendly type matching legacy shape exactly.
 // Consumers import this type from '@/services/climate' and see the same

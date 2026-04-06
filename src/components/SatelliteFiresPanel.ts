@@ -1,6 +1,6 @@
-import { Panel } from './Panel';
-import type { FireRegionStats } from '@/services/wildfires';
 import { t } from '@/services/i18n';
+import type { FireRegionStats } from '@/services/wildfires';
+import { Panel } from './Panel';
 
 export class SatelliteFiresPanel extends Panel {
   private stats: FireRegionStats[] = [];

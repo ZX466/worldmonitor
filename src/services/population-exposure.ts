@@ -1,7 +1,7 @@
-import { createCircuitBreaker } from '@/utils';
-import type { CountryPopulation, PopulationExposure } from '@/types';
 import { DisplacementServiceClient } from '@/generated/client/worldmonitor/displacement/v1/service_client';
 import type { GetPopulationExposureResponse } from '@/generated/client/worldmonitor/displacement/v1/service_client';
+import type { CountryPopulation, PopulationExposure } from '@/types';
+import { createCircuitBreaker } from '@/utils';
 
 const client = new DisplacementServiceClient('', { fetch: (...args) => globalThis.fetch(...args) });
 

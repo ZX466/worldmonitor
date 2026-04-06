@@ -1,5 +1,3 @@
-import type { MilitaryFlight, MilitaryFlightCluster, MilitaryAircraftType, MilitaryOperator } from '@/types';
-import { createCircuitBreaker } from '@/utils';
 import {
   identifyByCallsign,
   identifyByAircraftType,
@@ -9,12 +7,14 @@ import {
   MILITARY_QUERY_REGIONS,
 } from '@/config/military';
 import type { QueryRegion } from '@/config/military';
+import type { MilitaryFlight, MilitaryFlightCluster, MilitaryAircraftType, MilitaryOperator } from '@/types';
+import { createCircuitBreaker } from '@/utils';
+import { isFeatureAvailable } from './runtime-config';
 import {
   getAircraftDetailsBatch,
   analyzeAircraftDetails,
   checkWingbitsStatus,
 } from './wingbits';
-import { isFeatureAvailable } from './runtime-config';
 
 // OpenSky API path — route through Vercel so Railway secret never reaches the browser.
 const OPENSKY_PROXY_URL = '/api/opensky';

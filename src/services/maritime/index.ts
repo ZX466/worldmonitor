@@ -4,8 +4,8 @@ import {
   type AisDisruption as ProtoDisruption,
   type GetVesselSnapshotResponse,
 } from '@/generated/client/worldmonitor/maritime/v1/service_client';
-import { createCircuitBreaker } from '@/utils';
 import type { AisDisruptionEvent, AisDensityZone, AisDisruptionType } from '@/types';
+import { createCircuitBreaker } from '@/utils';
 import { dataFreshness } from '../data-freshness';
 import { isFeatureAvailable } from '../runtime-config';
 

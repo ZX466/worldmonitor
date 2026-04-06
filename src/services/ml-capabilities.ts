@@ -3,8 +3,8 @@
  * Detects device capabilities for ONNX Runtime Web
  */
 
-import { isMobileDevice } from '@/utils';
 import { ML_THRESHOLDS } from '@/config/ml-config';
+import { isMobileDevice } from '@/utils';
 
 export interface MLCapabilities {
   isSupported: boolean;

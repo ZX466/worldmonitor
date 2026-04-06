@@ -22,11 +22,10 @@ import {
   type BisExchangeRate,
   type BisCreditToGdp,
 } from '@/generated/client/worldmonitor/economic/v1/service_client';
-import { createCircuitBreaker } from '@/utils';
-import { getCSSColor } from '@/utils';
-import { isFeatureAvailable } from '../runtime-config';
-import { dataFreshness } from '../data-freshness';
 import { getHydratedData } from '@/services/bootstrap';
+import { createCircuitBreaker , getCSSColor } from '@/utils';
+import { dataFreshness } from '../data-freshness';
+import { isFeatureAvailable } from '../runtime-config';
 
 // ---- Client + Circuit Breakers ----
 

@@ -1,66 +1,5 @@
 import type { AppContext, AppModule } from '@/app/app-context';
-import type { NewsItem, MapLayers, SocialUnrestEvent } from '@/types';
-import type { MarketData } from '@/types';
 import type { TimeRange } from '@/components';
-import {
-  FEEDS,
-  INTEL_SOURCES,
-  SECTORS,
-  COMMODITIES,
-  MARKET_SYMBOLS,
-  SITE_VARIANT,
-  LAYER_TO_SOURCE,
-} from '@/config';
-import { INTEL_HOTSPOTS, CONFLICT_ZONES } from '@/config/geo';
-import { tokenizeForMatch, matchKeyword } from '@/utils/keyword-match';
-import {
-  fetchCategoryFeeds,
-  getFeedFailures,
-  fetchMultipleStocks,
-  fetchCrypto,
-  fetchPredictions,
-  fetchEarthquakes,
-  fetchWeatherAlerts,
-  fetchFredData,
-  fetchInternetOutages,
-  isOutagesConfigured,
-  fetchAisSignals,
-  getAisStatus,
-  isAisConfigured,
-  fetchCableActivity,
-  fetchCableHealth,
-  fetchProtestEvents,
-  getProtestStatus,
-  fetchFlightDelays,
-  fetchMilitaryFlights,
-  fetchMilitaryVessels,
-  initMilitaryVesselStream,
-  isMilitaryVesselTrackingConfigured,
-  fetchUSNIFleetReport,
-  updateBaseline,
-  calculateDeviation,
-  addToSignalHistory,
-  analysisWorker,
-  fetchPizzIntStatus,
-  fetchGdeltTensions,
-  fetchNaturalEvents,
-  fetchRecentAwards,
-  fetchOilAnalytics,
-  fetchBisData,
-  fetchCyberThreats,
-  drainTrendingSignals,
-  fetchTradeRestrictions,
-  fetchTariffTrends,
-  fetchTradeFlows,
-  fetchTradeBarriers,
-  fetchShippingRates,
-  fetchChokepointStatus,
-  fetchCriticalMinerals,
-} from '@/services';
-import { checkBatchForBreakingAlerts, dispatchOrefBreakingAlert } from '@/services/breaking-news-alerts';
-import { mlWorker } from '@/services/ml-worker';
-import { clusterNewsHybrid } from '@/services/clustering';
-import { ingestProtests, ingestFlights, ingestVessels, ingestEarthquakes, detectGeoConvergence, geoConvergenceToSignal } from '@/services/geo-convergence';
 import { signalAggregator } from '@/services/signal-aggregator';
 import { updateAndCheck } from '@/services/temporal-baseline';
 import { fetchAllFires, flattenFires, computeRegionStats, toMapFires } from '@/services/wildfires';
@@ -114,9 +53,17 @@ import { SatelliteFiresPanel } from '@/components/SatelliteFiresPanel';
 import { classifyNewsItem } from '@/services/positive-classifier';
 import { fetchGivingSummary } from '@/services/giving';
 import { GivingPanel } from '@/components';
+import {
+  FEEDS,
+  INTEL_SOURCES,
+  SECTORS,
+  COMMODITIES,
+  MARKET_SYMBOLS,
+  SITE_VARIANT,
+  LAYER_TO_SOURCE,
+} from '@/config';
+import { INTEL_HOTSPOTS, CONFLICT_ZONES } from '@/config/geo';
 import { fetchProgressData } from '@/services/progress-data';
-import { fetchConservationWins } from '@/services/conservation-data';
-import { fetchRenewableEnergyData, fetchEnergyCapacity } from '@/services/renewable-energy-data';
 import { checkMilestones } from '@/services/celebration';
 import { fetchHappinessScores } from '@/services/happiness-data';
 import { fetchRenewableInstallations } from '@/services/renewable-installations';
@@ -127,6 +74,58 @@ import { fetchKindnessData } from '@/services/kindness-data';
 import { getPersistentCache, setPersistentCache } from '@/services/persistent-cache';
 import type { ThreatLevel as ClientThreatLevel } from '@/services/threat-classifier';
 import type { NewsItem as ProtoNewsItem, ThreatLevel as ProtoThreatLevel } from '@/generated/client/worldmonitor/news/v1/service_client';
+import {
+  fetchCategoryFeeds,
+  getFeedFailures,
+  fetchMultipleStocks,
+  fetchCrypto,
+  fetchPredictions,
+  fetchEarthquakes,
+  fetchWeatherAlerts,
+  fetchFredData,
+  fetchInternetOutages,
+  isOutagesConfigured,
+  fetchAisSignals,
+  getAisStatus,
+  isAisConfigured,
+  fetchCableActivity,
+  fetchCableHealth,
+  fetchProtestEvents,
+  getProtestStatus,
+  fetchFlightDelays,
+  fetchMilitaryFlights,
+  fetchMilitaryVessels,
+  initMilitaryVesselStream,
+  isMilitaryVesselTrackingConfigured,
+  fetchUSNIFleetReport,
+  updateBaseline,
+  calculateDeviation,
+  addToSignalHistory,
+  analysisWorker,
+  fetchPizzIntStatus,
+  fetchGdeltTensions,
+  fetchNaturalEvents,
+  fetchRecentAwards,
+  fetchOilAnalytics,
+  fetchBisData,
+  fetchCyberThreats,
+  drainTrendingSignals,
+  fetchTradeRestrictions,
+  fetchTariffTrends,
+  fetchTradeFlows,
+  fetchTradeBarriers,
+  fetchShippingRates,
+  fetchChokepointStatus,
+  fetchCriticalMinerals,
+} from '@/services';
+import { checkBatchForBreakingAlerts, dispatchOrefBreakingAlert } from '@/services/breaking-news-alerts';
+import { clusterNewsHybrid } from '@/services/clustering';
+import { fetchConservationWins } from '@/services/conservation-data';
+import { ingestProtests, ingestFlights, ingestVessels, ingestEarthquakes, detectGeoConvergence, geoConvergenceToSignal } from '@/services/geo-convergence';
+import { mlWorker } from '@/services/ml-worker';
+import { fetchRenewableEnergyData, fetchEnergyCapacity } from '@/services/renewable-energy-data';
+import type { MarketData , NewsItem, MapLayers, SocialUnrestEvent } from '@/types';
+import { tokenizeForMatch, matchKeyword } from '@/utils/keyword-match';
 
 const PROTO_TO_CLIENT_LEVEL: Record<ProtoThreatLevel, ClientThreatLevel> = {
   THREAT_LEVEL_UNSPECIFIED: 'info',
@@ -564,7 +563,7 @@ export class DataLoaderManager implements AppModule {
 
       // Digest branch: server already aggregated feeds — map proto items to client types
       if (digest?.categories && category in digest.categories) {
-        let items = (digest.categories[category]?.items ?? [])
+        const items = (digest.categories[category]?.items ?? [])
           .map(protoItemToNewsItem)
           .filter(i => enabledNames.has(i.source));
 
@@ -607,7 +606,7 @@ export class DataLoaderManager implements AppModule {
       // Digest branch: server already aggregated feeds — map proto items to client types
       if (digest?.categories && category in digest.categories) {
         const enabledNames = new Set(enabledFeeds.map(f => f.name));
-        let items = (digest.categories[category]?.items ?? [])
+        const items = (digest.categories[category]?.items ?? [])
           .map(protoItemToNewsItem)
           .filter(i => enabledNames.has(i.source));
 

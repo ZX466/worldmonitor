@@ -6,8 +6,8 @@ import {
   type CryptoGivingSummary as ProtoCrypto,
   type InstitutionalGiving as ProtoInstitutional,
 } from '@/generated/client/worldmonitor/giving/v1/service_client';
-import { createCircuitBreaker } from '@/utils';
 import { getHydratedData } from '@/services/bootstrap';
+import { createCircuitBreaker } from '@/utils';
 
 // ─── Consumer-friendly types ───
 

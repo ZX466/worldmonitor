@@ -100,7 +100,7 @@ export class AviationServiceClient {
   }
 
   async listAirportDelays(req: ListAirportDelaysRequest, options?: AviationServiceCallOptions): Promise<ListAirportDelaysResponse> {
-    let path = "/api/aviation/v1/list-airport-delays";
+    const path = "/api/aviation/v1/list-airport-delays";
     const params = new URLSearchParams();
     if (req.pageSize != null && req.pageSize !== 0) params.set("page_size", String(req.pageSize));
     if (req.cursor != null && req.cursor !== "") params.set("cursor", String(req.cursor));

@@ -1,13 +1,13 @@
-import { Panel } from './Panel';
+import { t } from '@/services/i18n';
+import { isDesktopRuntime } from '@/services/runtime';
+import { isFeatureAvailable } from '@/services/runtime-config';
 import type {
   GetShippingRatesResponse,
   GetChokepointStatusResponse,
   GetCriticalMineralsResponse,
 } from '@/services/supply-chain';
-import { t } from '@/services/i18n';
 import { escapeHtml } from '@/utils/sanitize';
-import { isFeatureAvailable } from '@/services/runtime-config';
-import { isDesktopRuntime } from '@/services/runtime';
+import { Panel } from './Panel';
 
 type TabId = 'chokepoints' | 'shipping' | 'minerals';
 

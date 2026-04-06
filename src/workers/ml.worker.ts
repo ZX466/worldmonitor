@@ -117,7 +117,7 @@ type MLWorkerMessage =
   | VectorStoreResetMessage;
 
 // Loaded pipelines (using unknown since pipeline types vary)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 const loadedPipelines = new Map<string, any>();
 const loadingPromises = new Map<string, Promise<void>>();
 
@@ -140,7 +140,7 @@ async function loadModel(modelId: string): Promise<void> {
 
   const loadPromise = (async () => {
     // Suppress verbose ONNX Runtime warnings (CleanUnusedInitializersAndNodeArgs)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const ort = (globalThis as any).ort;
     if (ort?.env) { try { ort.env.logLevel = 'error'; } catch { /* ignore */ } }
 

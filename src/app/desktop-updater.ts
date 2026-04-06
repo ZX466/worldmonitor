@@ -1,6 +1,6 @@
 import type { AppContext, AppModule } from '@/app/app-context';
-import { invokeTauri } from '@/services/tauri-bridge';
 import { trackUpdateShown, trackUpdateClicked, trackUpdateDismissed } from '@/services/analytics';
+import { invokeTauri } from '@/services/tauri-bridge';
 import { escapeHtml } from '@/utils/sanitize';
 
 interface DesktopRuntimeInfo {

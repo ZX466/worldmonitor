@@ -1,7 +1,7 @@
-import { Panel } from './Panel';
-import { escapeHtml } from '@/utils/sanitize';
-import type { UcdpGeoEvent, UcdpEventType } from '@/types';
 import { t } from '@/services/i18n';
+import type { UcdpGeoEvent, UcdpEventType } from '@/types';
+import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 export class UcdpEventsPanel extends Panel {
   private events: UcdpGeoEvent[] = [];

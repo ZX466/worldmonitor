@@ -1,14 +1,14 @@
-import { Panel } from './Panel';
+import { t } from '@/services/i18n';
+import { isDesktopRuntime } from '@/services/runtime';
+import { isFeatureAvailable } from '@/services/runtime-config';
 import type {
   GetTradeRestrictionsResponse,
   GetTariffTrendsResponse,
   GetTradeFlowsResponse,
   GetTradeBarriersResponse,
 } from '@/services/trade';
-import { t } from '@/services/i18n';
 import { escapeHtml } from '@/utils/sanitize';
-import { isFeatureAvailable } from '@/services/runtime-config';
-import { isDesktopRuntime } from '@/services/runtime';
+import { Panel } from './Panel';
 
 type TabId = 'restrictions' | 'tariffs' | 'flows' | 'barriers';
 

@@ -45,13 +45,13 @@ function normalizeBaseUrl(baseUrl: string): string {
   return baseUrl.replace(/\/$/, '');
 }
 
-type RuntimeProbe = {
+interface RuntimeProbe {
   hasTauriGlobals: boolean;
   userAgent: string;
   locationProtocol: string;
   locationHost: string;
   locationOrigin: string;
-};
+}
 
 export function detectDesktopRuntime(probe: RuntimeProbe): boolean {
   const tauriInUserAgent = probe.userAgent.includes('Tauri');

@@ -7,11 +7,11 @@
  * smooth monotone curves matching the ProgressChartsPanel pattern.
  */
 
-import { Panel } from './Panel';
 import * as d3 from 'd3';
 import type { SpeciesRecovery } from '@/services/conservation-data';
 import { getCSSColor } from '@/utils';
 import { replaceChildren } from '@/utils/dom-utils';
+import { Panel } from './Panel';
 
 const SPARKLINE_MARGIN = { top: 4, right: 8, bottom: 16, left: 8 };
 const SPARKLINE_HEIGHT = 50;

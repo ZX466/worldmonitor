@@ -1,8 +1,8 @@
-import { Panel } from './Panel';
 import { t } from '@/services/i18n';
 import type { TechHubActivity } from '@/services/tech-activity';
-import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
 import { getCSSColor } from '@/utils';
+import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 const COUNTRY_FLAGS: Record<string, string> = {
   'USA': '🇺🇸', 'United States': '🇺🇸',

@@ -90,7 +90,7 @@ export class WildfireServiceClient {
   }
 
   async listFireDetections(req: ListFireDetectionsRequest, options?: WildfireServiceCallOptions): Promise<ListFireDetectionsResponse> {
-    let path = "/api/wildfire/v1/list-fire-detections";
+    const path = "/api/wildfire/v1/list-fire-detections";
     const params = new URLSearchParams();
     if (req.start != null && req.start !== 0) params.set("start", String(req.start));
     if (req.end != null && req.end !== 0) params.set("end", String(req.end));

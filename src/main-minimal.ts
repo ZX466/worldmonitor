@@ -8,8 +8,8 @@ import './styles/happy-theme.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 // 中国风主题支持
-import { initChineseTheme } from './utils/chinese-theme-manager';
 import { App } from './App';
+import { initChineseTheme } from './utils/chinese-theme-manager';
 
 // 禁用 Sentry（如果定义了 VITE_DISABLE_ANALYTICS）
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN?.trim();

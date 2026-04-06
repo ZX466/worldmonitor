@@ -105,7 +105,7 @@ export class GivingServiceClient {
   }
 
   async getGivingSummary(req: GetGivingSummaryRequest, options?: GivingServiceCallOptions): Promise<GetGivingSummaryResponse> {
-    let path = "/api/giving/v1/get-giving-summary";
+    const path = "/api/giving/v1/get-giving-summary";
     const params = new URLSearchParams();
     if (req.platformLimit != null && req.platformLimit !== 0) params.set("platform_limit", String(req.platformLimit));
     if (req.categoryLimit != null && req.categoryLimit !== 0) params.set("category_limit", String(req.categoryLimit));

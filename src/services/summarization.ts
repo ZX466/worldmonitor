@@ -7,13 +7,13 @@
  * per-provider fetch endpoints.
  */
 
-import { mlWorker } from './ml-worker';
 import { SITE_VARIANT } from '@/config';
 import { BETA_MODE } from '@/config/beta';
-import { isFeatureAvailable, type RuntimeFeatureId } from './runtime-config';
-import { trackLLMUsage, trackLLMFailure } from './analytics';
 import { NewsServiceClient, type SummarizeArticleResponse } from '@/generated/client/worldmonitor/news/v1/service_client';
 import { createCircuitBreaker } from '@/utils';
+import { trackLLMUsage, trackLLMFailure } from './analytics';
+import { mlWorker } from './ml-worker';
+import { isFeatureAvailable, type RuntimeFeatureId } from './runtime-config';
 
 export type SummarizationProvider = 'ollama' | 'zhipu' | 'groq' | 'openrouter' | 'browser' | 'cache';
 

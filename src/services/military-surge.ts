@@ -1,8 +1,8 @@
+import { MILITARY_BASES_EXPANDED } from '@/config/bases-expanded';
 import type { MilitaryFlight, MilitaryOperator } from '@/types';
 import type { SignalType } from '@/utils/analysis-constants';
-import { MILITARY_BASES_EXPANDED } from '@/config/bases-expanded';
-import { focalPointDetector } from './focal-point-detector';
 import { getCountryScore } from './country-instability';
+import { focalPointDetector } from './focal-point-detector';
 
 // Foreign military concentration detection - immediate alerts, no baseline needed
 interface GeoRegion {
@@ -552,7 +552,7 @@ export function foreignPresenceToSignal(alert: ForeignPresenceAlert): {
   const newsContext = focalPointDetector.getNewsCorrelationContext(relevantCountries);
 
   // Build enhanced description with news correlation
-  let description = `${alert.aircraftCount} ${alert.operatorCountry} aircraft detected in ${alert.region.name}. ` +
+  const description = `${alert.aircraftCount} ${alert.operatorCountry} aircraft detected in ${alert.region.name}. ` +
     `${aircraftList}. Callsigns: ${callsigns.slice(0, 4).join(', ')}${callsigns.length > 4 ? '...' : ''}`;
 
   // Check for critical focal points in affected region

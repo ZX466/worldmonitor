@@ -1,6 +1,3 @@
-import type { PizzIntStatus, PizzIntLocation, PizzIntDefconLevel, GdeltTensionPair } from '@/types';
-import { createCircuitBreaker } from '@/utils';
-import { t } from '@/services/i18n';
 import {
   IntelligenceServiceClient,
   type GetPizzintStatusResponse,
@@ -8,6 +5,9 @@ import {
   type PizzintLocation as ProtoLocation,
   type GdeltTensionPair as ProtoTensionPair,
 } from '@/generated/client/worldmonitor/intelligence/v1/service_client';
+import { t } from '@/services/i18n';
+import type { PizzIntStatus, PizzIntLocation, PizzIntDefconLevel, GdeltTensionPair } from '@/types';
+import { createCircuitBreaker } from '@/utils';
 
 // ---- Sebuf client ----
 

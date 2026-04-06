@@ -1,9 +1,9 @@
-import { Panel } from './Panel';
+import { getStreamQuality, subscribeStreamQualityChange } from '@/services/ai-flow-settings';
+import { trackWebcamSelected, trackWebcamRegionFiltered } from '@/services/analytics';
 import { isDesktopRuntime, getLocalApiPort } from '@/services/runtime';
 import { escapeHtml } from '@/utils/sanitize';
 import { t } from '../services/i18n';
-import { trackWebcamSelected, trackWebcamRegionFiltered } from '@/services/analytics';
-import { getStreamQuality, subscribeStreamQualityChange } from '@/services/ai-flow-settings';
+import { Panel } from './Panel';
 
 type WebcamRegion = 'iran' | 'middle-east' | 'europe' | 'asia' | 'americas';
 

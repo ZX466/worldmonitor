@@ -66,7 +66,7 @@ export class PositiveEventsServiceClient {
   }
 
   async listPositiveGeoEvents(_req: ListPositiveGeoEventsRequest, options?: PositiveEventsServiceCallOptions): Promise<ListPositiveGeoEventsResponse> {
-    let path = "/api/positive-events/v1/list-positive-geo-events";
+    const path = "/api/positive-events/v1/list-positive-geo-events";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {

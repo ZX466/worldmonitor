@@ -1,6 +1,4 @@
 import type { AppContext, AppModule } from '@/app/app-context';
-import type { RelatedAsset } from '@/types';
-import type { TheaterPostureSummary } from '@/services/military-surge';
 import {
   MapContainer,
   NewsPanel,
@@ -38,20 +36,16 @@ import {
   TelegramIntelPanel,
   GulfEconomiesPanel,
   WorldClockPanel,
-} from '@/components';
-import { SatelliteFiresPanel } from '@/components/SatelliteFiresPanel';
-import { PositiveNewsFeedPanel } from '@/components/PositiveNewsFeedPanel';
-import { CountersPanel } from '@/components/CountersPanel';
-import { ProgressChartsPanel } from '@/components/ProgressChartsPanel';
+ GivingPanel } from '@/components';
 import { BreakthroughsTickerPanel } from '@/components/BreakthroughsTickerPanel';
-import { HeroSpotlightPanel } from '@/components/HeroSpotlightPanel';
+import { CountersPanel } from '@/components/CountersPanel';
 import { GoodThingsDigestPanel } from '@/components/GoodThingsDigestPanel';
-import { SpeciesComebackPanel } from '@/components/SpeciesComebackPanel';
+import { HeroSpotlightPanel } from '@/components/HeroSpotlightPanel';
+import { PositiveNewsFeedPanel } from '@/components/PositiveNewsFeedPanel';
+import { ProgressChartsPanel } from '@/components/ProgressChartsPanel';
 import { RenewableEnergyPanel } from '@/components/RenewableEnergyPanel';
-import { GivingPanel } from '@/components';
-import { focusInvestmentOnMap } from '@/services/investments-focus';
-import { debounce, saveToStorage } from '@/utils';
-import { escapeHtml } from '@/utils/sanitize';
+import { SatelliteFiresPanel } from '@/components/SatelliteFiresPanel';
+import { SpeciesComebackPanel } from '@/components/SpeciesComebackPanel';
 import {
   FEEDS,
   INTEL_SOURCES,
@@ -60,9 +54,13 @@ import {
   SITE_VARIANT,
 } from '@/config';
 import { BETA_MODE } from '@/config/beta';
-import { t } from '@/services/i18n';
-import { getCurrentTheme } from '@/utils';
 import { trackCriticalBannerAction } from '@/services/analytics';
+import { t } from '@/services/i18n';
+import { focusInvestmentOnMap } from '@/services/investments-focus';
+import type { TheaterPostureSummary } from '@/services/military-surge';
+import type { RelatedAsset } from '@/types';
+import { getCurrentTheme , debounce, saveToStorage } from '@/utils';
+import { escapeHtml } from '@/utils/sanitize';
 
 export interface PanelLayoutCallbacks {
   openCountryStory: (code: string, name: string) => void;

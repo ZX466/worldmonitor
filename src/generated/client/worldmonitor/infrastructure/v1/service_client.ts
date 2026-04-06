@@ -177,7 +177,7 @@ export class InfrastructureServiceClient {
   }
 
   async listInternetOutages(req: ListInternetOutagesRequest, options?: InfrastructureServiceCallOptions): Promise<ListInternetOutagesResponse> {
-    let path = "/api/infrastructure/v1/list-internet-outages";
+    const path = "/api/infrastructure/v1/list-internet-outages";
     const params = new URLSearchParams();
     if (req.start != null && req.start !== 0) params.set("start", String(req.start));
     if (req.end != null && req.end !== 0) params.set("end", String(req.end));
@@ -206,7 +206,7 @@ export class InfrastructureServiceClient {
   }
 
   async listServiceStatuses(req: ListServiceStatusesRequest, options?: InfrastructureServiceCallOptions): Promise<ListServiceStatusesResponse> {
-    let path = "/api/infrastructure/v1/list-service-statuses";
+    const path = "/api/infrastructure/v1/list-service-statuses";
     const params = new URLSearchParams();
     if (req.status != null && req.status !== "SERVICE_OPERATIONAL_STATUS_UNSPECIFIED") params.set("status", String(req.status));
     const url = this.baseURL + path + (params.toString() ? "?" + params.toString() : "");
@@ -231,7 +231,7 @@ export class InfrastructureServiceClient {
   }
 
   async getTemporalBaseline(req: GetTemporalBaselineRequest, options?: InfrastructureServiceCallOptions): Promise<GetTemporalBaselineResponse> {
-    let path = "/api/infrastructure/v1/get-temporal-baseline";
+    const path = "/api/infrastructure/v1/get-temporal-baseline";
     const params = new URLSearchParams();
     if (req.type != null && req.type !== "") params.set("type", String(req.type));
     if (req.region != null && req.region !== "") params.set("region", String(req.region));
@@ -258,7 +258,7 @@ export class InfrastructureServiceClient {
   }
 
   async recordBaselineSnapshot(req: RecordBaselineSnapshotRequest, options?: InfrastructureServiceCallOptions): Promise<RecordBaselineSnapshotResponse> {
-    let path = "/api/infrastructure/v1/record-baseline-snapshot";
+    const path = "/api/infrastructure/v1/record-baseline-snapshot";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -282,7 +282,7 @@ export class InfrastructureServiceClient {
   }
 
   async getCableHealth(_req: GetCableHealthRequest, options?: InfrastructureServiceCallOptions): Promise<GetCableHealthResponse> {
-    let path = "/api/infrastructure/v1/get-cable-health";
+    const path = "/api/infrastructure/v1/get-cable-health";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {

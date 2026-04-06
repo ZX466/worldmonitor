@@ -1,10 +1,10 @@
-import type { MilitaryVessel, MilitaryVesselCluster, USNIFleetReport, USNIVesselEntry } from '@/types';
-import { createCircuitBreaker } from '@/utils';
 import { getUSNIRegionApproxCoords, getUSNIRegionCoords } from '@/config/military';
 import {
   MilitaryServiceClient,
   type GetUSNIFleetReportResponse,
 } from '@/generated/client/worldmonitor/military/v1/service_client';
+import type { MilitaryVessel, MilitaryVesselCluster, USNIFleetReport, USNIVesselEntry } from '@/types';
+import { createCircuitBreaker } from '@/utils';
 
 const client = new MilitaryServiceClient('', { fetch: (...args) => globalThis.fetch(...args) });
 

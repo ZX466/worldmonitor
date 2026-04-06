@@ -1,8 +1,8 @@
-import { PredictionServiceClient } from '@/generated/client/worldmonitor/prediction/v1/service_client';
-import { createCircuitBreaker } from '@/utils';
 import { SITE_VARIANT } from '@/config';
+import { PredictionServiceClient } from '@/generated/client/worldmonitor/prediction/v1/service_client';
 import { isDesktopRuntime } from '@/services/runtime';
 import { tryInvokeTauri } from '@/services/tauri-bridge';
+import { createCircuitBreaker } from '@/utils';
 
 // Consumer-friendly type (re-export, matches legacy shape)
 export interface PredictionMarket {

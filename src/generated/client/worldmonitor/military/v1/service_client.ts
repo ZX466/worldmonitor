@@ -289,7 +289,7 @@ export class MilitaryServiceClient {
   }
 
   async listMilitaryFlights(req: ListMilitaryFlightsRequest, options?: MilitaryServiceCallOptions): Promise<ListMilitaryFlightsResponse> {
-    let path = "/api/military/v1/list-military-flights";
+    const path = "/api/military/v1/list-military-flights";
     const params = new URLSearchParams();
     if (req.pageSize != null && req.pageSize !== 0) params.set("page_size", String(req.pageSize));
     if (req.cursor != null && req.cursor !== "") params.set("cursor", String(req.cursor));
@@ -321,7 +321,7 @@ export class MilitaryServiceClient {
   }
 
   async getTheaterPosture(req: GetTheaterPostureRequest, options?: MilitaryServiceCallOptions): Promise<GetTheaterPostureResponse> {
-    let path = "/api/military/v1/get-theater-posture";
+    const path = "/api/military/v1/get-theater-posture";
     const params = new URLSearchParams();
     if (req.theater != null && req.theater !== "") params.set("theater", String(req.theater));
     const url = this.baseURL + path + (params.toString() ? "?" + params.toString() : "");
@@ -346,7 +346,7 @@ export class MilitaryServiceClient {
   }
 
   async getAircraftDetails(req: GetAircraftDetailsRequest, options?: MilitaryServiceCallOptions): Promise<GetAircraftDetailsResponse> {
-    let path = "/api/military/v1/get-aircraft-details";
+    const path = "/api/military/v1/get-aircraft-details";
     const params = new URLSearchParams();
     if (req.icao24 != null && req.icao24 !== "") params.set("icao24", String(req.icao24));
     const url = this.baseURL + path + (params.toString() ? "?" + params.toString() : "");
@@ -371,7 +371,7 @@ export class MilitaryServiceClient {
   }
 
   async getAircraftDetailsBatch(req: GetAircraftDetailsBatchRequest, options?: MilitaryServiceCallOptions): Promise<GetAircraftDetailsBatchResponse> {
-    let path = "/api/military/v1/get-aircraft-details-batch";
+    const path = "/api/military/v1/get-aircraft-details-batch";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -395,7 +395,7 @@ export class MilitaryServiceClient {
   }
 
   async getWingbitsStatus(_req: GetWingbitsStatusRequest, options?: MilitaryServiceCallOptions): Promise<GetWingbitsStatusResponse> {
-    let path = "/api/military/v1/get-wingbits-status";
+    const path = "/api/military/v1/get-wingbits-status";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -418,7 +418,7 @@ export class MilitaryServiceClient {
   }
 
   async getUSNIFleetReport(req: GetUSNIFleetReportRequest, options?: MilitaryServiceCallOptions): Promise<GetUSNIFleetReportResponse> {
-    let path = "/api/military/v1/get-usni-fleet-report";
+    const path = "/api/military/v1/get-usni-fleet-report";
     const params = new URLSearchParams();
     if (req.forceRefresh) params.set("force_refresh", String(req.forceRefresh));
     const url = this.baseURL + path + (params.toString() ? "?" + params.toString() : "");
@@ -443,7 +443,7 @@ export class MilitaryServiceClient {
   }
 
   async listMilitaryBases(req: ListMilitaryBasesRequest, options?: MilitaryServiceCallOptions): Promise<ListMilitaryBasesResponse> {
-    let path = "/api/military/v1/list-military-bases";
+    const path = "/api/military/v1/list-military-bases";
     const params = new URLSearchParams();
     if (req.neLat != null && req.neLat !== 0) params.set("ne_lat", String(req.neLat));
     if (req.neLon != null && req.neLon !== 0) params.set("ne_lon", String(req.neLon));

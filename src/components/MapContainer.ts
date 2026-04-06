@@ -2,9 +2,17 @@
  * MapContainer - Conditional map renderer
  * Renders DeckGLMap (WebGL) on desktop, fallback to D3/SVG MapComponent on mobile
  */
-import { isMobileDevice } from '@/utils';
-import { MapComponent } from './Map';
-import { DeckGLMap, type DeckMapView, type CountryClickPayload } from './DeckGLMap';
+import type { AirportDelayAlert } from '@/services/aviation';
+import type { ClimateAnomaly } from '@/services/climate';
+import type { SpeciesRecovery } from '@/services/conservation-data';
+import type { DisplacementFlow } from '@/services/displacement';
+import type { Earthquake } from '@/services/earthquakes';
+import type { GpsJamHex } from '@/services/gps-interference';
+import type { HappinessData } from '@/services/happiness-data';
+import type { KindnessPoint } from '@/services/kindness-data';
+import type { PositiveGeoEvent } from '@/services/positive-events-geo';
+import type { WeatherAlert } from '@/services/weather';
+import type { RenewableInstallation } from '@/services/renewable-installations';
 import type {
   MapLayers,
   Hotspot,
@@ -26,17 +34,9 @@ import type {
   CyberThreat,
   CableHealthRecord,
 } from '@/types';
-import type { AirportDelayAlert } from '@/services/aviation';
-import type { DisplacementFlow } from '@/services/displacement';
-import type { Earthquake } from '@/services/earthquakes';
-import type { ClimateAnomaly } from '@/services/climate';
-import type { WeatherAlert } from '@/services/weather';
-import type { PositiveGeoEvent } from '@/services/positive-events-geo';
-import type { KindnessPoint } from '@/services/kindness-data';
-import type { HappinessData } from '@/services/happiness-data';
-import type { SpeciesRecovery } from '@/services/conservation-data';
-import type { RenewableInstallation } from '@/services/renewable-installations';
-import type { GpsJamHex } from '@/services/gps-interference';
+import { isMobileDevice } from '@/utils';
+import { DeckGLMap, type DeckMapView, type CountryClickPayload } from './DeckGLMap';
+import { MapComponent } from './Map';
 
 export type TimeRange = '1h' | '6h' | '24h' | '48h' | '7d' | 'all';
 export type MapView = 'global' | 'america' | 'mena' | 'eu' | 'asia' | 'latam' | 'africa' | 'oceania';

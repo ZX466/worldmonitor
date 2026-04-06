@@ -6,13 +6,13 @@
  * instead of the legacy /api/wingbits proxy.
  */
 
-import { createCircuitBreaker } from '@/utils';
-import { dataFreshness } from './data-freshness';
-import { isFeatureAvailable } from './runtime-config';
 import {
   MilitaryServiceClient,
   type AircraftDetails,
 } from '@/generated/client/worldmonitor/military/v1/service_client';
+import { createCircuitBreaker } from '@/utils';
+import { dataFreshness } from './data-freshness';
+import { isFeatureAvailable } from './runtime-config';
 
 export interface WingbitsAircraftDetails {
   icao24: string;

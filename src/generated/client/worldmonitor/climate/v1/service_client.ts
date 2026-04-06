@@ -85,7 +85,7 @@ export class ClimateServiceClient {
   }
 
   async listClimateAnomalies(req: ListClimateAnomaliesRequest, options?: ClimateServiceCallOptions): Promise<ListClimateAnomaliesResponse> {
-    let path = "/api/climate/v1/list-climate-anomalies";
+    const path = "/api/climate/v1/list-climate-anomalies";
     const params = new URLSearchParams();
     if (req.pageSize != null && req.pageSize !== 0) params.set("page_size", String(req.pageSize));
     if (req.cursor != null && req.cursor !== "") params.set("cursor", String(req.cursor));

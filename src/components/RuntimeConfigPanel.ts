@@ -1,4 +1,6 @@
-import { Panel } from './Panel';
+import { trackFeatureToggle } from '@/services/analytics';
+import { t } from '@/services/i18n';
+import { isDesktopRuntime } from '@/services/runtime';
 import {
   RUNTIME_FEATURES,
   getEffectiveSecrets,
@@ -15,12 +17,10 @@ import {
   type RuntimeFeatureId,
   type RuntimeSecretKey,
 } from '@/services/runtime-config';
+import { SIGNUP_URLS, PLAINTEXT_KEYS, MASKED_SENTINEL } from '@/services/settings-constants';
 import { invokeTauri } from '@/services/tauri-bridge';
 import { escapeHtml } from '@/utils/sanitize';
-import { isDesktopRuntime } from '@/services/runtime';
-import { t } from '@/services/i18n';
-import { trackFeatureToggle } from '@/services/analytics';
-import { SIGNUP_URLS, PLAINTEXT_KEYS, MASKED_SENTINEL } from '@/services/settings-constants';
+import { Panel } from './Panel';
 
 interface RuntimeConfigPanelOptions {
   mode?: 'full' | 'alert';

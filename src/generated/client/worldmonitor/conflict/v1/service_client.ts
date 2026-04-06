@@ -153,7 +153,7 @@ export class ConflictServiceClient {
   }
 
   async listAcledEvents(req: ListAcledEventsRequest, options?: ConflictServiceCallOptions): Promise<ListAcledEventsResponse> {
-    let path = "/api/conflict/v1/list-acled-events";
+    const path = "/api/conflict/v1/list-acled-events";
     const params = new URLSearchParams();
     if (req.start != null && req.start !== 0) params.set("start", String(req.start));
     if (req.end != null && req.end !== 0) params.set("end", String(req.end));
@@ -182,7 +182,7 @@ export class ConflictServiceClient {
   }
 
   async listUcdpEvents(req: ListUcdpEventsRequest, options?: ConflictServiceCallOptions): Promise<ListUcdpEventsResponse> {
-    let path = "/api/conflict/v1/list-ucdp-events";
+    const path = "/api/conflict/v1/list-ucdp-events";
     const params = new URLSearchParams();
     if (req.start != null && req.start !== 0) params.set("start", String(req.start));
     if (req.end != null && req.end !== 0) params.set("end", String(req.end));

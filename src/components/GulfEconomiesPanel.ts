@@ -1,10 +1,10 @@
-import { Panel } from './Panel';
-import { t } from '@/services/i18n';
-import { escapeHtml } from '@/utils/sanitize';
-import { formatPrice, formatChange, getChangeClass } from '@/utils';
-import { miniSparkline } from '@/utils/sparkline';
 import { MarketServiceClient } from '@/generated/client/worldmonitor/market/v1/service_client';
 import type { ListGulfQuotesResponse, GulfQuote } from '@/generated/client/worldmonitor/market/v1/service_client';
+import { t } from '@/services/i18n';
+import { formatPrice, formatChange, getChangeClass } from '@/utils';
+import { escapeHtml } from '@/utils/sanitize';
+import { miniSparkline } from '@/utils/sparkline';
+import { Panel } from './Panel';
 
 const client = new MarketServiceClient('', { fetch: (...args: Parameters<typeof fetch>) => globalThis.fetch(...args) });
 

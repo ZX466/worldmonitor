@@ -1,9 +1,9 @@
-import { Panel } from './Panel';
-import { t } from '@/services/i18n';
-import { escapeHtml } from '@/utils/sanitize';
 import { MarketServiceClient } from '@/generated/client/worldmonitor/market/v1/service_client';
 import type { ListEtfFlowsResponse } from '@/generated/client/worldmonitor/market/v1/service_client';
 import { getHydratedData } from '@/services/bootstrap';
+import { t } from '@/services/i18n';
+import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 type ETFFlowsResult = ListEtfFlowsResponse;
 

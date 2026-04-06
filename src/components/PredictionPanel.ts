@@ -1,7 +1,7 @@
-import { Panel } from './Panel';
+import { t } from '@/services/i18n';
 import type { PredictionMarket } from '@/services/prediction';
 import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
-import { t } from '@/services/i18n';
+import { Panel } from './Panel';
 
 export class PredictionPanel extends Panel {
   constructor() {

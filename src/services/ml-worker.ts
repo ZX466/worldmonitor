@@ -3,11 +3,11 @@
  * Provides typed async interface to the ML Web Worker for ONNX inference
  */
 
-import { detectMLCapabilities, type MLCapabilities } from './ml-capabilities';
 import { ML_THRESHOLDS, MODEL_CONFIGS } from '@/config/ml-config';
 
 // Import worker using Vite's worker syntax
 import MLWorkerClass from '@/workers/ml.worker?worker';
+import { detectMLCapabilities, type MLCapabilities } from './ml-capabilities';
 
 interface PendingRequest<T> {
   resolve: (value: T) => void;

@@ -1,10 +1,10 @@
-import type { Hotspot } from '@/types';
-import { t } from '@/services/i18n';
 import {
   IntelligenceServiceClient,
   type GdeltArticle as ProtoGdeltArticle,
   type SearchGdeltDocumentsResponse,
 } from '@/generated/client/worldmonitor/intelligence/v1/service_client';
+import { t } from '@/services/i18n';
+import type { Hotspot } from '@/types';
 import { createCircuitBreaker } from '@/utils';
 
 export interface GdeltArticle {

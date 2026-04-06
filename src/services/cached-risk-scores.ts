@@ -4,15 +4,15 @@
  * Eliminates 15-minute learning mode for users.
  */
 
-import type { CountryScore, ComponentScores } from './country-instability';
-import { setHasCachedScores } from './country-instability';
-import { getPersistentCache, setPersistentCache } from './persistent-cache';
 import {
   IntelligenceServiceClient,
   type GetRiskScoresResponse,
   type CiiScore,
   type StrategicRisk,
 } from '@/generated/client/worldmonitor/intelligence/v1/service_client';
+import type { CountryScore, ComponentScores } from './country-instability';
+import { setHasCachedScores } from './country-instability';
+import { getPersistentCache, setPersistentCache } from './persistent-cache';
 
 // ---- Sebuf client ----
 

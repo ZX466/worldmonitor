@@ -1,9 +1,9 @@
+import { getAiFlowSettings } from '@/services/ai-flow-settings';
+import { trackPanelResized } from '@/services/analytics';
+import { t } from '../services/i18n';
 import { isDesktopRuntime } from '../services/runtime';
 import { invokeTauri } from '../services/tauri-bridge';
-import { t } from '../services/i18n';
 import { h, replaceChildren, safeHtml } from '../utils/dom-utils';
-import { trackPanelResized } from '@/services/analytics';
-import { getAiFlowSettings } from '@/services/ai-flow-settings';
 
 export interface PanelOptions {
   id: string;

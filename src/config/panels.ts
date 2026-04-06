@@ -1,5 +1,5 @@
-import type { PanelConfig, MapLayers } from '@/types';
 import type { DataSourceId } from '@/services/data-freshness';
+import type { PanelConfig, MapLayers } from '@/types';
 import { SITE_VARIANT } from './variant';
 
 // ============================================

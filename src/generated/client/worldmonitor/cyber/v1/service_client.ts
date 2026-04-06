@@ -98,7 +98,7 @@ export class CyberServiceClient {
   }
 
   async listCyberThreats(req: ListCyberThreatsRequest, options?: CyberServiceCallOptions): Promise<ListCyberThreatsResponse> {
-    let path = "/api/cyber/v1/list-cyber-threats";
+    const path = "/api/cyber/v1/list-cyber-threats";
     const params = new URLSearchParams();
     if (req.start != null && req.start !== 0) params.set("start", String(req.start));
     if (req.end != null && req.end !== 0) params.set("end", String(req.end));

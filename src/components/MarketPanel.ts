@@ -1,9 +1,9 @@
-import { Panel } from './Panel';
 import { t } from '@/services/i18n';
 import type { MarketData, CryptoData } from '@/types';
 import { formatPrice, formatChange, getChangeClass, getHeatmapClass } from '@/utils';
 import { escapeHtml } from '@/utils/sanitize';
 import { miniSparkline } from '@/utils/sparkline';
+import { Panel } from './Panel';
 
 
 

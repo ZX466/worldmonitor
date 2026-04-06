@@ -3,9 +3,9 @@
  * Generates a 1080x1080 PNG from a NewsItem with warm gradient,
  * category badge, headline, source, date, and HappyMonitor watermark.
  */
-import type { NewsItem } from '@/types';
 import type { HappyContentCategory } from '@/services/positive-classifier';
 import { HAPPY_CATEGORY_LABELS } from '@/services/positive-classifier';
+import type { NewsItem } from '@/types';
 
 const SIZE = 1080;
 const PAD = 80;

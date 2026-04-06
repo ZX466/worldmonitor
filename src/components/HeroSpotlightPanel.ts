@@ -1,6 +1,6 @@
-import { Panel } from './Panel';
 import type { NewsItem } from '@/types';
 import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 /**
  * HeroSpotlightPanel -- Daily hero spotlight card with photo, excerpt, and map location.

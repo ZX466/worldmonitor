@@ -1,8 +1,8 @@
-import { Panel } from './Panel';
 import type { GeoHubActivity } from '@/services/geo-activity';
-import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
 import { t } from '@/services/i18n';
 import { getCSSColor } from '@/utils';
+import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 const COUNTRY_FLAGS: Record<string, string> = {
   'USA': '🇺🇸', 'Russia': '🇷🇺', 'China': '🇨🇳', 'UK': '🇬🇧', 'Belgium': '🇧🇪',

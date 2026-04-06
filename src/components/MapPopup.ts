@@ -1,18 +1,18 @@
-import type { ConflictZone, Hotspot, NewsItem, MilitaryBase, StrategicWaterway, APTGroup, NuclearFacility, EconomicCenter, GammaIrradiator, Pipeline, UnderseaCable, CableAdvisory, RepairShip, InternetOutage, AIDataCenter, AisDisruptionEvent, SocialUnrestEvent, MilitaryFlight, MilitaryVessel, MilitaryFlightCluster, MilitaryVesselCluster, NaturalEvent, Port, Spaceport, CriticalMineralProject, CyberThreat } from '@/types';
-import type { AirportDelayAlert } from '@/services/aviation';
-import type { Earthquake } from '@/services/earthquakes';
-import type { WeatherAlert } from '@/services/weather';
 import { UNDERSEA_CABLES } from '@/config';
 import type { StartupHub, Accelerator, TechHQ, CloudRegion } from '@/config/tech-geo';
-import type { TechHubActivity } from '@/services/tech-activity';
-import type { GeoHubActivity } from '@/services/geo-activity';
-import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
-import { isMobileDevice, getCSSColor } from '@/utils';
-import { t } from '@/services/i18n';
-import { fetchHotspotContext, formatArticleDate, extractDomain, type GdeltArticle } from '@/services/gdelt-intel';
-import { getNaturalEventIcon } from '@/services/eonet';
-import { getHotspotEscalation, getEscalationChange24h } from '@/services/hotspot-escalation';
+import type { AirportDelayAlert } from '@/services/aviation';
 import { getCableHealthRecord } from '@/services/cable-health';
+import type { Earthquake } from '@/services/earthquakes';
+import { getNaturalEventIcon } from '@/services/eonet';
+import { fetchHotspotContext, formatArticleDate, extractDomain, type GdeltArticle } from '@/services/gdelt-intel';
+import type { GeoHubActivity } from '@/services/geo-activity';
+import { getHotspotEscalation, getEscalationChange24h } from '@/services/hotspot-escalation';
+import { t } from '@/services/i18n';
+import type { TechHubActivity } from '@/services/tech-activity';
+import type { WeatherAlert } from '@/services/weather';
+import type { ConflictZone, Hotspot, NewsItem, MilitaryBase, StrategicWaterway, APTGroup, NuclearFacility, EconomicCenter, GammaIrradiator, Pipeline, UnderseaCable, CableAdvisory, RepairShip, InternetOutage, AIDataCenter, AisDisruptionEvent, SocialUnrestEvent, MilitaryFlight, MilitaryVessel, MilitaryFlightCluster, MilitaryVesselCluster, NaturalEvent, Port, Spaceport, CriticalMineralProject, CyberThreat } from '@/types';
+import { isMobileDevice, getCSSColor } from '@/utils';
+import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
 
 export type PopupType = 'conflict' | 'hotspot' | 'earthquake' | 'weather' | 'base' | 'waterway' | 'apt' | 'cyberThreat' | 'nuclear' | 'economic' | 'irradiator' | 'pipeline' | 'cable' | 'cable-advisory' | 'repair-ship' | 'outage' | 'datacenter' | 'datacenterCluster' | 'ais' | 'protest' | 'protestCluster' | 'flight' | 'militaryFlight' | 'militaryVessel' | 'militaryFlightCluster' | 'militaryVesselCluster' | 'natEvent' | 'port' | 'spaceport' | 'mineral' | 'startupHub' | 'cloudRegion' | 'techHQ' | 'accelerator' | 'techEvent' | 'techHQCluster' | 'techEventCluster' | 'techActivity' | 'geoActivity' | 'stockExchange' | 'financialCenter' | 'centralBank' | 'commodityHub' | 'iranEvent' | 'gpsJamming';
 

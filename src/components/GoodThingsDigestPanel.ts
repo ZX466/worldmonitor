@@ -1,7 +1,7 @@
-import { Panel } from './Panel';
-import type { NewsItem } from '@/types';
 import { generateSummary } from '@/services/summarization';
+import type { NewsItem } from '@/types';
 import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 /**
  * GoodThingsDigestPanel -- Displays the top 5 positive stories of the day,

@@ -1,5 +1,5 @@
-import type { StoryData } from './story-data';
 import { getLocale, t } from './i18n';
+import type { StoryData } from './story-data';
 
 const W = 1080;
 const H = 1920;

@@ -1,6 +1,3 @@
-import type { ClusteredEvent, RelatedAsset, AssetType, RelatedAssetContext } from '@/types';
-import { tokenizeForMatch, matchKeyword } from '@/utils/keyword-match';
-import { t } from '@/services/i18n';
 import {
   INTEL_HOTSPOTS,
   CONFLICT_ZONES,
@@ -10,6 +7,9 @@ import {
   AI_DATA_CENTERS,
   PIPELINES,
 } from '@/config';
+import { t } from '@/services/i18n';
+import type { ClusteredEvent, RelatedAsset, AssetType, RelatedAssetContext } from '@/types';
+import { tokenizeForMatch, matchKeyword } from '@/utils/keyword-match';
 
 const MAX_DISTANCE_KM = 600;
 const MAX_ASSETS_PER_TYPE = 3;

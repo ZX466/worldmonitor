@@ -1,5 +1,5 @@
-import type { MapLayers } from '@/types';
 import type { MapView, TimeRange } from '@/components/Map';
+import type { MapLayers } from '@/types';
 
 const LAYER_KEYS: (keyof MapLayers)[] = [
   'conflicts',

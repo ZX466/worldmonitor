@@ -1,8 +1,8 @@
-import { Panel } from './Panel';
-import { escapeHtml } from '@/utils/sanitize';
 import { t } from '@/services/i18n';
 import { fetchOrefHistory } from '@/services/oref-alerts';
 import type { OrefAlertsResponse, OrefAlert, OrefHistoryEntry } from '@/services/oref-alerts';
+import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 const MAX_HISTORY_WAVES = 50;
 const ONE_HOUR_MS = 60 * 60 * 1000;

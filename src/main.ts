@@ -10,10 +10,11 @@ const preloadLinks = [
 ];
 
 // 中国风主题支持
-import { initChineseTheme } from './utils/chinese-theme-manager';
 import * as Sentry from '@sentry/browser';
 import { inject } from '@vercel/analytics';
-import { App } from './App';
+import { clearChunkReloadGuard, installChunkReloadGuard } from '@/bootstrap/chunk-reload';
+import { SITE_VARIANT } from '@/config/variant';
+import { debugGetCells, getCellCount } from '@/services/geo-convergence';
 
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN?.trim();
 
@@ -185,13 +186,12 @@ window.addEventListener('unhandledrejection', (e) => {
   if (e.reason?.name === 'NotAllowedError') e.preventDefault();
 });
 
-import { debugGetCells, getCellCount } from '@/services/geo-convergence';
 import { initMetaTags } from '@/services/meta-tags';
 import { installRuntimeFetchPatch, installWebApiRedirect } from '@/services/runtime';
 import { loadDesktopSecrets } from '@/services/runtime-config';
 import { applyStoredTheme } from '@/utils/theme-manager';
-import { SITE_VARIANT } from '@/config/variant';
-import { clearChunkReloadGuard, installChunkReloadGuard } from '@/bootstrap/chunk-reload';
+import { App } from './App';
+import { initChineseTheme } from './utils/chinese-theme-manager';
 
 // Auto-reload on stale chunk 404s after deployment (Vite fires this for modulepreload failures).
 const chunkReloadStorageKey = installChunkReloadGuard(__APP_VERSION__);

@@ -1,8 +1,8 @@
-import { Panel } from './Panel';
-import { getCSSColor } from '@/utils';
 import { calculateCII, type CountryScore } from '@/services/country-instability';
-import { t } from '../services/i18n';
+import { getCSSColor } from '@/utils';
 import { h, replaceChildren, rawHtml } from '@/utils/dom-utils';
+import { t } from '../services/i18n';
+import { Panel } from './Panel';
 
 export class CIIPanel extends Panel {
   private scores: CountryScore[] = [];

@@ -1,8 +1,8 @@
+import { t } from '@/services/i18n';
+import { SUPPRESSED_TRENDING_TERMS, escapeRegex, generateSignalId, tokenize } from '@/utils/analysis-constants';
 import type { CorrelationSignal } from './correlation';
 import { mlWorker } from './ml-worker';
 import { generateSummary } from './summarization';
-import { SUPPRESSED_TRENDING_TERMS, escapeRegex, generateSignalId, tokenize } from '@/utils/analysis-constants';
-import { t } from '@/services/i18n';
 
 export interface TrendingHeadlineInput {
   title: string;

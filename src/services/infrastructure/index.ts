@@ -13,10 +13,10 @@ import {
   type InternetOutage as ProtoOutage,
   type ServiceStatus as ProtoServiceStatus,
 } from '@/generated/client/worldmonitor/infrastructure/v1/service_client';
+import { getHydratedData } from '@/services/bootstrap';
 import type { InternetOutage } from '@/types';
 import { createCircuitBreaker } from '@/utils';
 import { isFeatureAvailable } from '../runtime-config';
-import { getHydratedData } from '@/services/bootstrap';
 
 // ---- Client + Circuit Breakers ----
 

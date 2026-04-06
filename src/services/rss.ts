@@ -1,15 +1,15 @@
-import type { Feed, NewsItem } from '@/types';
 import { SITE_VARIANT } from '@/config';
+import type { Feed, NewsItem } from '@/types';
 import { chunkArray, fetchWithProxy } from '@/utils';
-import { classifyByKeyword, classifyWithAI } from './threat-classifier';
-import { inferGeoHubsFromTitle } from './geo-hub-index';
-import { getPersistentCache, setPersistentCache } from './persistent-cache';
-import { dataFreshness } from './data-freshness';
-import { ingestHeadlines } from './trending-keywords';
-import { getCurrentLanguage } from './i18n';
 import { canQueueAiClassification, AI_CLASSIFY_MAX_PER_FEED } from './ai-classify-queue';
-import { mlWorker } from './ml-worker';
 import { isHeadlineMemoryEnabled } from './ai-flow-settings';
+import { dataFreshness } from './data-freshness';
+import { inferGeoHubsFromTitle } from './geo-hub-index';
+import { getCurrentLanguage } from './i18n';
+import { mlWorker } from './ml-worker';
+import { getPersistentCache, setPersistentCache } from './persistent-cache';
+import { classifyByKeyword, classifyWithAI } from './threat-classifier';
+import { ingestHeadlines } from './trending-keywords';
 
 const FEED_COOLDOWN_MS = 5 * 60 * 1000;
 const MAX_FAILURES = 2;

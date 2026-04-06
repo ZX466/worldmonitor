@@ -1,6 +1,6 @@
-import type { Hotspot, EscalationTrend, MilitaryFlight, MilitaryVessel } from '@/types';
-import { INTEL_HOTSPOTS } from '@/config/geo';
 import { getHotspotCountries } from '@/config/countries';
+import { INTEL_HOTSPOTS } from '@/config/geo';
+import type { Hotspot, EscalationTrend, MilitaryFlight, MilitaryVessel } from '@/types';
 
 export interface DynamicEscalationScore {
   hotspotId: string;

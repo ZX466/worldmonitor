@@ -1,13 +1,13 @@
-import { Panel } from './Panel';
 import type { FredSeries, OilAnalytics, BisData } from '@/services/economic';
-import { t } from '@/services/i18n';
-import type { SpendingSummary } from '@/services/usa-spending';
 import { getChangeClass, formatChange, formatOilValue, getTrendIndicator, getTrendColor } from '@/services/economic';
-import { formatAwardAmount, getAwardTypeIcon } from '@/services/usa-spending';
-import { escapeHtml } from '@/utils/sanitize';
-import { isFeatureAvailable } from '@/services/runtime-config';
+import { t } from '@/services/i18n';
 import { isDesktopRuntime } from '@/services/runtime';
+import { isFeatureAvailable } from '@/services/runtime-config';
+import type { SpendingSummary } from '@/services/usa-spending';
+import { formatAwardAmount, getAwardTypeIcon } from '@/services/usa-spending';
 import { getCSSColor } from '@/utils';
+import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 type TabId = 'indicators' | 'oil' | 'spending' | 'centralBanks';
 

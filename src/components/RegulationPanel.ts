@@ -1,14 +1,14 @@
-import { Panel } from './Panel';
-import type { AIRegulation, RegulatoryAction, CountryRegulationProfile } from '@/types';
 import {
   AI_REGULATIONS,
   COUNTRY_REGULATION_PROFILES,
   getUpcomingDeadlines,
   getRecentActions,
 } from '@/config';
-import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
 import { t } from '@/services/i18n';
+import type { AIRegulation, RegulatoryAction, CountryRegulationProfile } from '@/types';
 import { getCSSColor } from '@/utils';
+import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 export class RegulationPanel extends Panel {
   private viewMode: 'timeline' | 'deadlines' | 'regulations' | 'countries' = 'timeline';

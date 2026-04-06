@@ -118,7 +118,7 @@ export class UnrestServiceClient {
   }
 
   async listUnrestEvents(req: ListUnrestEventsRequest, options?: UnrestServiceCallOptions): Promise<ListUnrestEventsResponse> {
-    let path = "/api/unrest/v1/list-unrest-events";
+    const path = "/api/unrest/v1/list-unrest-events";
     const params = new URLSearchParams();
     if (req.start != null && req.start !== 0) params.set("start", String(req.start));
     if (req.end != null && req.end !== 0) params.set("end", String(req.end));

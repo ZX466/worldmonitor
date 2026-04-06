@@ -1,3 +1,7 @@
+import { UNDERSEA_CABLES, STRATEGIC_WATERWAYS } from '@/config/geo';
+import { PIPELINES } from '@/config/pipelines';
+import type { Port } from '@/config/ports';
+import { PORTS } from '@/config/ports';
 import type {
   InfrastructureNode,
   DependencyEdge,
@@ -8,10 +12,6 @@ import type {
   UnderseaCable,
   Pipeline,
 } from '@/types';
-import type { Port } from '@/config/ports';
-import { UNDERSEA_CABLES, STRATEGIC_WATERWAYS } from '@/config/geo';
-import { PIPELINES } from '@/config/pipelines';
-import { PORTS } from '@/config/ports';
 
 // Country name lookup
 const COUNTRY_NAMES: Record<string, string> = {

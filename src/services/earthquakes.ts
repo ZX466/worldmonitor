@@ -3,8 +3,8 @@ import {
   type Earthquake,
   type ListEarthquakesResponse,
 } from '@/generated/client/worldmonitor/seismology/v1/service_client';
-import { createCircuitBreaker } from '@/utils';
 import { getHydratedData } from '@/services/bootstrap';
+import { createCircuitBreaker } from '@/utils';
 
 // Re-export the proto Earthquake type as the domain's public type
 export type { Earthquake };

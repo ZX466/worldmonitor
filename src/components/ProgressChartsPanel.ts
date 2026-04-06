@@ -7,11 +7,11 @@
  * filled areas, smooth monotone curves, and hover tooltips.
  */
 
-import { Panel } from './Panel';
 import * as d3 from 'd3';
 import { type ProgressDataSet, type ProgressDataPoint } from '@/services/progress-data';
 import { getCSSColor } from '@/utils';
 import { replaceChildren } from '@/utils/dom-utils';
+import { Panel } from './Panel';
 
 const CHART_MARGIN = { top: 8, right: 12, bottom: 24, left: 40 };
 const CHART_HEIGHT = 90;

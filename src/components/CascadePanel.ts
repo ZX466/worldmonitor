@@ -1,7 +1,4 @@
-import { Panel } from './Panel';
-import { escapeHtml } from '@/utils/sanitize';
 import { t } from '@/services/i18n';
-import { getCSSColor } from '@/utils';
 import {
   buildDependencyGraph,
   calculateCascade,
@@ -10,6 +7,9 @@ import {
   type DependencyGraph,
 } from '@/services/infrastructure-cascade';
 import type { CascadeResult, CascadeImpactLevel, InfrastructureNode } from '@/types';
+import { getCSSColor } from '@/utils';
+import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 type NodeFilter = 'all' | 'cable' | 'pipeline' | 'port' | 'chokepoint';
 

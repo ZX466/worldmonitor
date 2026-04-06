@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
-import { escapeHtml } from '@/utils/sanitize';
-import { getCSSColor } from '@/utils';
 import { t } from '@/services/i18n';
+import { getCSSColor } from '@/utils';
+import { escapeHtml } from '@/utils/sanitize';
 
 export interface TimelineEvent {
   timestamp: number;

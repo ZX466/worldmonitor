@@ -1,10 +1,10 @@
-import { Panel } from './Panel';
 import {
   COUNTER_METRICS,
   getCounterValue,
   formatCounterValue,
   type CounterMetric,
 } from '@/services/humanity-counters';
+import { Panel } from './Panel';
 
 /**
  * CountersPanel -- Worldometer-style ticking counters showing positive global metrics.

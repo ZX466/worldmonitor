@@ -1,17 +1,7 @@
 import * as d3 from 'd3';
-import * as topojson from 'topojson-client';
-import { escapeHtml } from '@/utils/sanitize';
-import { getCSSColor } from '@/utils';
-import type { Topology, GeometryCollection } from 'topojson-specification';
 import type { Feature, Geometry } from 'geojson';
-import type { MapLayers, Hotspot, NewsItem, InternetOutage, RelatedAsset, AssetType, AisDisruptionEvent, AisDensityZone, CableAdvisory, RepairShip, SocialUnrestEvent, MilitaryFlight, MilitaryVessel, MilitaryFlightCluster, MilitaryVesselCluster, NaturalEvent, CyberThreat, CableHealthRecord } from '@/types';
-import type { AirportDelayAlert } from '@/services/aviation';
-import type { Earthquake } from '@/services/earthquakes';
-import type { IranEvent } from '@/services/conflict';
-import type { TechHubActivity } from '@/services/tech-activity';
-import type { GeoHubActivity } from '@/services/geo-activity';
-import { getNaturalEventIcon } from '@/services/eonet';
-import type { WeatherAlert } from '@/services/weather';
+import * as topojson from 'topojson-client';
+import type { Topology, GeometryCollection } from 'topojson-specification';
 import { getSeverityColor } from '@/services/weather';
 import {
   MAP_URLS,
@@ -43,8 +33,15 @@ import {
   CENTRAL_BANKS,
   COMMODITY_HUBS,
 } from '@/config';
+import type { AirportDelayAlert } from '@/services/aviation';
+import type { IranEvent } from '@/services/conflict';
 import { tokenizeForMatch, matchKeyword, findMatchingKeywords } from '@/utils/keyword-match';
-import { MapPopup } from './MapPopup';
+import { getCountryScore } from '@/services/country-instability';
+import { getAlertsNearLocation } from '@/services/geo-convergence';
+import { getCountryAtCoordinates, getCountryBbox } from '@/services/country-geometry';
+import type { Earthquake } from '@/services/earthquakes';
+import { getNaturalEventIcon } from '@/services/eonet';
+import type { GeoHubActivity } from '@/services/geo-activity';
 import {
   updateHotspotEscalation,
   getHotspotEscalation,
@@ -52,11 +49,14 @@ import {
   setCIIGetter,
   setGeoAlertGetter,
 } from '@/services/hotspot-escalation';
-import { getCountryScore } from '@/services/country-instability';
-import { getAlertsNearLocation } from '@/services/geo-convergence';
-import { getCountryAtCoordinates, getCountryBbox } from '@/services/country-geometry';
-import type { CountryClickPayload } from './DeckGLMap';
 import { t } from '@/services/i18n';
+import type { TechHubActivity } from '@/services/tech-activity';
+import type { WeatherAlert } from '@/services/weather';
+import type { MapLayers, Hotspot, NewsItem, InternetOutage, RelatedAsset, AssetType, AisDisruptionEvent, AisDensityZone, CableAdvisory, RepairShip, SocialUnrestEvent, MilitaryFlight, MilitaryVessel, MilitaryFlightCluster, MilitaryVesselCluster, NaturalEvent, CyberThreat, CableHealthRecord } from '@/types';
+import { getCSSColor } from '@/utils';
+import { escapeHtml } from '@/utils/sanitize';
+import type { CountryClickPayload } from './DeckGLMap';
+import { MapPopup } from './MapPopup';
 
 export type TimeRange = '1h' | '6h' | '24h' | '48h' | '7d' | 'all';
 export type MapView = 'global' | 'america' | 'mena' | 'eu' | 'asia' | 'latam' | 'africa' | 'oceania';

@@ -131,7 +131,7 @@ export class DisplacementServiceClient {
   }
 
   async getDisplacementSummary(req: GetDisplacementSummaryRequest, options?: DisplacementServiceCallOptions): Promise<GetDisplacementSummaryResponse> {
-    let path = "/api/displacement/v1/get-displacement-summary";
+    const path = "/api/displacement/v1/get-displacement-summary";
     const params = new URLSearchParams();
     if (req.year != null && req.year !== 0) params.set("year", String(req.year));
     if (req.countryLimit != null && req.countryLimit !== 0) params.set("country_limit", String(req.countryLimit));
@@ -158,7 +158,7 @@ export class DisplacementServiceClient {
   }
 
   async getPopulationExposure(req: GetPopulationExposureRequest, options?: DisplacementServiceCallOptions): Promise<GetPopulationExposureResponse> {
-    let path = "/api/displacement/v1/get-population-exposure";
+    const path = "/api/displacement/v1/get-population-exposure";
     const params = new URLSearchParams();
     if (req.mode != null && req.mode !== "") params.set("mode", String(req.mode));
     if (req.lat != null && req.lat !== 0) params.set("lat", String(req.lat));

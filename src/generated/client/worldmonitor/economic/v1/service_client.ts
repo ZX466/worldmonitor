@@ -284,7 +284,7 @@ export class EconomicServiceClient {
   }
 
   async listWorldBankIndicators(req: ListWorldBankIndicatorsRequest, options?: EconomicServiceCallOptions): Promise<ListWorldBankIndicatorsResponse> {
-    let path = "/api/economic/v1/list-world-bank-indicators";
+    const path = "/api/economic/v1/list-world-bank-indicators";
     const params = new URLSearchParams();
     if (req.indicatorCode != null && req.indicatorCode !== "") params.set("indicator_code", String(req.indicatorCode));
     if (req.countryCode != null && req.countryCode !== "") params.set("country_code", String(req.countryCode));
@@ -313,7 +313,7 @@ export class EconomicServiceClient {
   }
 
   async getEnergyPrices(req: GetEnergyPricesRequest, options?: EconomicServiceCallOptions): Promise<GetEnergyPricesResponse> {
-    let path = "/api/economic/v1/get-energy-prices";
+    const path = "/api/economic/v1/get-energy-prices";
     const params = new URLSearchParams();
     if (req.commodities && req.commodities.length > 0) req.commodities.forEach(v => params.append("commodities", v));
     const url = this.baseURL + path + (params.toString() ? "?" + params.toString() : "");
@@ -338,7 +338,7 @@ export class EconomicServiceClient {
   }
 
   async getMacroSignals(_req: GetMacroSignalsRequest, options?: EconomicServiceCallOptions): Promise<GetMacroSignalsResponse> {
-    let path = "/api/economic/v1/get-macro-signals";
+    const path = "/api/economic/v1/get-macro-signals";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -361,7 +361,7 @@ export class EconomicServiceClient {
   }
 
   async getEnergyCapacity(req: GetEnergyCapacityRequest, options?: EconomicServiceCallOptions): Promise<GetEnergyCapacityResponse> {
-    let path = "/api/economic/v1/get-energy-capacity";
+    const path = "/api/economic/v1/get-energy-capacity";
     const params = new URLSearchParams();
     if (req.energySources && req.energySources.length > 0) req.energySources.forEach(v => params.append("energy_sources", v));
     if (req.years != null && req.years !== 0) params.set("years", String(req.years));
@@ -387,7 +387,7 @@ export class EconomicServiceClient {
   }
 
   async getBisPolicyRates(_req: GetBisPolicyRatesRequest, options?: EconomicServiceCallOptions): Promise<GetBisPolicyRatesResponse> {
-    let path = "/api/economic/v1/get-bis-policy-rates";
+    const path = "/api/economic/v1/get-bis-policy-rates";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -410,7 +410,7 @@ export class EconomicServiceClient {
   }
 
   async getBisExchangeRates(_req: GetBisExchangeRatesRequest, options?: EconomicServiceCallOptions): Promise<GetBisExchangeRatesResponse> {
-    let path = "/api/economic/v1/get-bis-exchange-rates";
+    const path = "/api/economic/v1/get-bis-exchange-rates";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -433,7 +433,7 @@ export class EconomicServiceClient {
   }
 
   async getBisCredit(_req: GetBisCreditRequest, options?: EconomicServiceCallOptions): Promise<GetBisCreditResponse> {
-    let path = "/api/economic/v1/get-bis-credit";
+    const path = "/api/economic/v1/get-bis-credit";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {

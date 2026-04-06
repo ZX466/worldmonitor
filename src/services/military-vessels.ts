@@ -1,11 +1,11 @@
-import type { MilitaryVessel, MilitaryVesselCluster, MilitaryVesselType, MilitaryOperator } from '@/types';
-import { createCircuitBreaker } from '@/utils';
 import {
   KNOWN_NAVAL_VESSELS,
   MILITARY_VESSEL_PATTERNS,
   getNearbyHotspot,
   MILITARY_HOTSPOTS,
 } from '@/config/military';
+import type { MilitaryVessel, MilitaryVesselCluster, MilitaryVesselType, MilitaryOperator } from '@/types';
+import { createCircuitBreaker } from '@/utils';
 import {
   registerAisCallback,
   unregisterAisCallback,

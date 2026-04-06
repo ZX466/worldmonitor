@@ -1,7 +1,7 @@
-import { Panel } from './Panel';
-import { t } from '@/services/i18n';
 import { getTechReadinessRankings, type TechReadinessScore } from '@/services/economic';
+import { t } from '@/services/i18n';
 import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 const COUNTRY_FLAGS: Record<string, string> = {
   'USA': '🇺🇸', 'CHN': '🇨🇳', 'JPN': '🇯🇵', 'DEU': '🇩🇪', 'KOR': '🇰🇷',

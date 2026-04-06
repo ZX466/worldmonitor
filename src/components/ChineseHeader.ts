@@ -3,9 +3,9 @@
  * 天下观 · 全球态势感知平台
  */
 
+import { chineseTitle, getChinesePanelTitle } from '@/config/chinese-titles';
 import { html } from '@/utils';
 import { createChineseTitle, createChineseSeal, createChineseDivider } from './ChineseDecoration';
-import { chineseTitle, getChinesePanelTitle } from '@/config/chinese-titles';
 
 export interface ChineseHeaderOptions {
   title?: string;

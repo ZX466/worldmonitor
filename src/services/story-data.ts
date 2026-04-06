@@ -1,8 +1,8 @@
-import { calculateCII, type CountryScore } from './country-instability';
-import type { ClusteredEvent } from '@/types';
-import type { ThreatLevel } from './threat-classifier';
 import { CURATED_COUNTRIES } from '@/config/countries';
+import type { ClusteredEvent } from '@/types';
 import { tokenizeForMatch, matchKeyword } from '@/utils/keyword-match';
+import { calculateCII, type CountryScore } from './country-instability';
+import type { ThreatLevel } from './threat-classifier';
 
 export interface StoryData {
   countryCode: string;

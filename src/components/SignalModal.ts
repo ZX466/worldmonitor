@@ -1,10 +1,10 @@
 import type { CorrelationSignal } from '@/services/correlation';
 import type { UnifiedAlert } from '@/services/cross-module-integration';
+import { t } from '@/services/i18n';
 import { suppressTrendingTerm } from '@/services/trending-keywords';
-import { escapeHtml } from '@/utils/sanitize';
 import { getCSSColor } from '@/utils';
 import { getSignalContext, type SignalType } from '@/utils/analysis-constants';
-import { t } from '@/services/i18n';
+import { escapeHtml } from '@/utils/sanitize';
 
 export class SignalModal {
   private element: HTMLElement;

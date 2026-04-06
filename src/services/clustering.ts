@@ -4,11 +4,11 @@
  * Hybrid clustering combines Jaccard + semantic similarity when ML is available.
  */
 
-import type { NewsItem, ClusteredEvent } from '@/types';
 import { getSourceTier } from '@/config';
+import { ML_THRESHOLDS } from '@/config/ml-config';
+import type { NewsItem, ClusteredEvent } from '@/types';
 import { clusterNewsCore } from './analysis-core';
 import { mlWorker } from './ml-worker';
-import { ML_THRESHOLDS } from '@/config/ml-config';
 
 export function clusterNews(items: NewsItem[]): ClusteredEvent[] {
   return clusterNewsCore(items, getSourceTier) as ClusteredEvent[];

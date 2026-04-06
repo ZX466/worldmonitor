@@ -83,7 +83,7 @@ export class SeismologyServiceClient {
   }
 
   async listEarthquakes(req: ListEarthquakesRequest, options?: SeismologyServiceCallOptions): Promise<ListEarthquakesResponse> {
-    let path = "/api/seismology/v1/list-earthquakes";
+    const path = "/api/seismology/v1/list-earthquakes";
     const params = new URLSearchParams();
     if (req.start != null && req.start !== 0) params.set("start", String(req.start));
     if (req.end != null && req.end !== 0) params.set("end", String(req.end));

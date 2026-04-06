@@ -1,12 +1,12 @@
-import { Panel } from './Panel';
-import { t } from '@/services/i18n';
-import { sanitizeUrl } from '@/utils/sanitize';
-import { h, replaceChildren } from '@/utils/dom-utils';
-import { isDesktopRuntime } from '@/services/runtime';
 import { ResearchServiceClient } from '@/generated/client/worldmonitor/research/v1/service_client';
 import type { TechEvent } from '@/generated/client/worldmonitor/research/v1/service_client';
+import { t } from '@/services/i18n';
+import { isDesktopRuntime } from '@/services/runtime';
 import type { NewsItem, DeductContextDetail } from '@/types';
+import { h, replaceChildren } from '@/utils/dom-utils';
 import { buildNewsContext } from '@/utils/news-context';
+import { sanitizeUrl } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 type ViewMode = 'upcoming' | 'conferences' | 'earnings' | 'all';
 

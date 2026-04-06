@@ -1,7 +1,6 @@
-import { Panel } from './Panel';
-import { escapeHtml } from '@/utils/sanitize';
-import { t } from '@/services/i18n';
-import { getCSSColor } from '@/utils';
+import { fetchCachedRiskScores } from '@/services/cached-risk-scores';
+import { getCachedPosture } from '@/services/cached-theater-posture';
+import { getLearningProgress } from '@/services/country-instability';
 import {
   calculateStrategicRiskOverview,
   getRecentAlerts,
@@ -10,7 +9,6 @@ import {
   type UnifiedAlert,
   type AlertPriority,
 } from '@/services/cross-module-integration';
-import { detectConvergence, type GeoConvergenceAlert } from '@/services/geo-convergence';
 import {
   dataFreshness,
   getStatusColor,
@@ -18,9 +16,11 @@ import {
   type DataSourceState,
   type DataFreshnessSummary,
 } from '@/services/data-freshness';
-import { getLearningProgress } from '@/services/country-instability';
-import { fetchCachedRiskScores } from '@/services/cached-risk-scores';
-import { getCachedPosture } from '@/services/cached-theater-posture';
+import { detectConvergence, type GeoConvergenceAlert } from '@/services/geo-convergence';
+import { t } from '@/services/i18n';
+import { getCSSColor } from '@/utils';
+import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 export class StrategicRiskPanel extends Panel {
   private overview: StrategicRiskOverview | null = null;

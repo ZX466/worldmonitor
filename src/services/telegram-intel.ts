@@ -1,5 +1,5 @@
-import { proxyUrl } from '@/utils';
 import { isDesktopRuntime } from '@/services/runtime';
+import { proxyUrl } from '@/utils';
 
 export interface TelegramItem {
   id: string;

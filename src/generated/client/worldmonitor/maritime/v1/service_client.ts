@@ -127,7 +127,7 @@ export class MaritimeServiceClient {
   }
 
   async getVesselSnapshot(req: GetVesselSnapshotRequest, options?: MaritimeServiceCallOptions): Promise<GetVesselSnapshotResponse> {
-    let path = "/api/maritime/v1/get-vessel-snapshot";
+    const path = "/api/maritime/v1/get-vessel-snapshot";
     const params = new URLSearchParams();
     if (req.neLat != null && req.neLat !== 0) params.set("ne_lat", String(req.neLat));
     if (req.neLon != null && req.neLon !== 0) params.set("ne_lon", String(req.neLon));
@@ -155,7 +155,7 @@ export class MaritimeServiceClient {
   }
 
   async listNavigationalWarnings(req: ListNavigationalWarningsRequest, options?: MaritimeServiceCallOptions): Promise<ListNavigationalWarningsResponse> {
-    let path = "/api/maritime/v1/list-navigational-warnings";
+    const path = "/api/maritime/v1/list-navigational-warnings";
     const params = new URLSearchParams();
     if (req.pageSize != null && req.pageSize !== 0) params.set("page_size", String(req.pageSize));
     if (req.cursor != null && req.cursor !== "") params.set("cursor", String(req.cursor));

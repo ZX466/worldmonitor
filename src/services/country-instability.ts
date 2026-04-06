@@ -1,16 +1,16 @@
-import type { SocialUnrestEvent, MilitaryFlight, MilitaryVessel, ClusteredEvent, InternetOutage, AisDisruptionEvent, CyberThreat } from '@/types';
+import { CURATED_COUNTRIES, DEFAULT_BASELINE_RISK, DEFAULT_EVENT_MULTIPLIER, getHotspotCountries } from '@/config/countries';
+import { INTEL_HOTSPOTS, CONFLICT_ZONES, STRATEGIC_WATERWAYS } from '@/config/geo';
 import type { AirportDelayAlert } from '@/services/aviation';
+import type { ClimateAnomaly } from '@/services/climate';
+import type { CountryDisplacement } from '@/services/displacement';
+import type { GpsJamHex } from '@/services/gps-interference';
 import type { SecurityAdvisory } from '@/services/security-advisories';
 import type { TemporalAnomaly } from '@/services/temporal-baseline';
+import type { SocialUnrestEvent, MilitaryFlight, MilitaryVessel, ClusteredEvent, InternetOutage, AisDisruptionEvent, CyberThreat } from '@/types';
 import { tokenizeForMatch, matchKeyword } from '@/utils/keyword-match';
-import { INTEL_HOTSPOTS, CONFLICT_ZONES, STRATEGIC_WATERWAYS } from '@/config/geo';
-import { CURATED_COUNTRIES, DEFAULT_BASELINE_RISK, DEFAULT_EVENT_MULTIPLIER, getHotspotCountries } from '@/config/countries';
-import { focalPointDetector } from './focal-point-detector';
 import type { ConflictEvent, UcdpConflictStatus, HapiConflictSummary } from './conflict';
-import type { CountryDisplacement } from '@/services/displacement';
-import type { ClimateAnomaly } from '@/services/climate';
-import type { GpsJamHex } from '@/services/gps-interference';
 import { getCountryAtCoordinates, iso3ToIso2Code, nameToCountryCode, getCountryNameByCode, matchCountryNamesInText, ME_STRIKE_BOUNDS, resolveCountryFromBounds } from './country-geometry';
+import { focalPointDetector } from './focal-point-detector';
 
 export interface CountryScore {
   code: string;

@@ -1,5 +1,5 @@
-import { PORTS } from './ports';
 import { STRATEGIC_WATERWAYS } from './geo';
+import { PORTS } from './ports';
 
 export type TradeRouteCategory = 'container' | 'energy' | 'bulk';
 export type TradeRouteStatus = 'active' | 'disrupted' | 'high_risk';

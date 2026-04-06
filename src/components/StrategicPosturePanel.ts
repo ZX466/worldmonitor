@@ -1,12 +1,12 @@
-import { Panel } from './Panel';
-import { escapeHtml } from '@/utils/sanitize';
 import { fetchCachedTheaterPosture, type CachedTheaterPosture } from '@/services/cached-theater-posture';
-import { fetchMilitaryVessels } from '@/services/military-vessels';
 import { recalcPostureWithVessels, type TheaterPostureSummary } from '@/services/military-surge';
+import { fetchMilitaryVessels } from '@/services/military-vessels';
 import { isDesktopRuntime } from '@/services/runtime';
-import { t } from '../services/i18n';
 import type { NewsItem, DeductContextDetail } from '@/types';
 import { buildNewsContext } from '@/utils/news-context';
+import { escapeHtml } from '@/utils/sanitize';
+import { t } from '../services/i18n';
+import { Panel } from './Panel';
 
 export class StrategicPosturePanel extends Panel {
   private postures: TheaterPostureSummary[] = [];

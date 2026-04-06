@@ -1,10 +1,10 @@
-import { Panel } from './Panel';
-import type { NewsItem } from '@/types';
+import { shareHappyCard } from '@/services/happy-share-renderer';
 import type { HappyContentCategory } from '@/services/positive-classifier';
 import { HAPPY_CATEGORY_ALL, HAPPY_CATEGORY_LABELS } from '@/services/positive-classifier';
-import { shareHappyCard } from '@/services/happy-share-renderer';
+import type { NewsItem } from '@/types';
 import { formatTime } from '@/utils';
 import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 /**
  * PositiveNewsFeedPanel -- scrolling positive news feed with category filter bar

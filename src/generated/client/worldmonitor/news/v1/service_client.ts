@@ -112,7 +112,7 @@ export class NewsServiceClient {
   }
 
   async summarizeArticle(req: SummarizeArticleRequest, options?: NewsServiceCallOptions): Promise<SummarizeArticleResponse> {
-    let path = "/api/news/v1/summarize-article";
+    const path = "/api/news/v1/summarize-article";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -136,7 +136,7 @@ export class NewsServiceClient {
   }
 
   async listFeedDigest(req: ListFeedDigestRequest, options?: NewsServiceCallOptions): Promise<ListFeedDigestResponse> {
-    let path = "/api/news/v1/list-feed-digest";
+    const path = "/api/news/v1/list-feed-digest";
     const params = new URLSearchParams();
     if (req.variant != null && req.variant !== "") params.set("variant", String(req.variant));
     if (req.lang != null && req.lang !== "") params.set("lang", String(req.lang));

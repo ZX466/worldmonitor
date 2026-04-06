@@ -1,15 +1,9 @@
 import './styles/main.css';
 import './styles/settings-window.css';
-import { SettingsManager } from '@/services/settings-manager';
-import {
-  SETTINGS_CATEGORIES,
-  HUMAN_LABELS,
-  SIGNUP_URLS,
-  PLAINTEXT_KEYS,
-  MASKED_SENTINEL,
-  type SettingsCategory,
-} from '@/services/settings-constants';
+import { trackFeatureToggle } from '@/services/analytics';
+import { initI18n, t } from '@/services/i18n';
 import { fetchOllamaModels } from '@/services/ollama-models';
+import { getApiBaseUrl, getRemoteApiBaseUrl, isDesktopRuntime, resolveLocalApiPort } from '@/services/runtime';
 import {
   RUNTIME_FEATURES,
   getEffectiveSecrets,
@@ -25,12 +19,18 @@ import {
   type RuntimeFeatureId,
   type RuntimeSecretKey,
 } from '@/services/runtime-config';
-import { getApiBaseUrl, getRemoteApiBaseUrl, isDesktopRuntime, resolveLocalApiPort } from '@/services/runtime';
+import {
+  SETTINGS_CATEGORIES,
+  HUMAN_LABELS,
+  SIGNUP_URLS,
+  PLAINTEXT_KEYS,
+  MASKED_SENTINEL,
+  type SettingsCategory,
+} from '@/services/settings-constants';
+import { SettingsManager } from '@/services/settings-manager';
 import { tryInvokeTauri, invokeTauri } from '@/services/tauri-bridge';
 import { escapeHtml } from '@/utils/sanitize';
-import { initI18n, t } from '@/services/i18n';
 import { applyStoredTheme } from '@/utils/theme-manager';
-import { trackFeatureToggle } from '@/services/analytics';
 
 let activeSection = 'overview';
 let settingsManager: SettingsManager;

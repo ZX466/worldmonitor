@@ -1,5 +1,5 @@
-import type { PizzIntStatus, GdeltTensionPair } from '@/types';
 import { t } from '@/services/i18n';
+import type { PizzIntStatus, GdeltTensionPair } from '@/types';
 import { h, replaceChildren } from '@/utils/dom-utils';
 
 const DEFCON_COLORS: Record<number, string> = {

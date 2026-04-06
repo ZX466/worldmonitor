@@ -1,10 +1,10 @@
+import { trackFindingClicked } from '@/services/analytics';
+import { getAlertSettings, updateAlertSettings } from '@/services/breaking-news-alerts';
 import { getRecentSignals, type CorrelationSignal } from '@/services/correlation';
 import { getRecentAlerts, type UnifiedAlert } from '@/services/cross-module-integration';
-import { getAlertSettings, updateAlertSettings } from '@/services/breaking-news-alerts';
 import { t } from '@/services/i18n';
 import { getSignalContext } from '@/utils/analysis-constants';
 import { escapeHtml } from '@/utils/sanitize';
-import { trackFindingClicked } from '@/services/analytics';
 
 const LOW_COUNT_THRESHOLD = 3;
 const MAX_VISIBLE_FINDINGS = 10;

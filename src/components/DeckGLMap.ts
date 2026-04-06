@@ -3,52 +3,13 @@
  * Uses deck.gl for high-performance rendering of large datasets
  * Mobile devices gracefully degrade to the D3/SVG-based Map component
  */
-import { MapboxOverlay } from '@deck.gl/mapbox';
+import { HeatmapLayer } from '@deck.gl/aggregation-layers';
 import type { Layer, LayersList, PickingInfo } from '@deck.gl/core';
-import { GeoJsonLayer, ScatterplotLayer, PathLayer, IconLayer, TextLayer, PolygonLayer } from '@deck.gl/layers';
+import { GeoJsonLayer, ScatterplotLayer, PathLayer, IconLayer, TextLayer, PolygonLayer , ArcLayer } from '@deck.gl/layers';
+import { MapboxOverlay } from '@deck.gl/mapbox';
+import type { FeatureCollection, Geometry } from 'geojson';
 import maplibregl from 'maplibre-gl';
 import Supercluster from 'supercluster';
-import type {
-  MapLayers,
-  Hotspot,
-  NewsItem,
-  InternetOutage,
-  RelatedAsset,
-  AssetType,
-  AisDisruptionEvent,
-  AisDensityZone,
-  CableAdvisory,
-  RepairShip,
-  SocialUnrestEvent,
-  AIDataCenter,
-  MilitaryFlight,
-  MilitaryVessel,
-  MilitaryFlightCluster,
-  MilitaryVesselCluster,
-  NaturalEvent,
-  UcdpGeoEvent,
-  MapProtestCluster,
-  MapTechHQCluster,
-  MapTechEventCluster,
-  MapDatacenterCluster,
-  CyberThreat,
-  CableHealthRecord,
-  MilitaryBaseEnriched,
-} from '@/types';
-import { fetchMilitaryBases, type MilitaryBaseCluster as ServerBaseCluster } from '@/services/military-bases';
-import type { AirportDelayAlert } from '@/services/aviation';
-import type { IranEvent } from '@/services/conflict';
-import type { GpsJamHex } from '@/services/gps-interference';
-import type { DisplacementFlow } from '@/services/displacement';
-import type { Earthquake } from '@/services/earthquakes';
-import type { ClimateAnomaly } from '@/services/climate';
-import { ArcLayer } from '@deck.gl/layers';
-import { HeatmapLayer } from '@deck.gl/aggregation-layers';
-import type { WeatherAlert } from '@/services/weather';
-import { escapeHtml } from '@/utils/sanitize';
-import { tokenizeForMatch, matchKeyword, matchesAnyKeyword, findMatchingKeywords } from '@/utils/keyword-match';
-import { t } from '@/services/i18n';
-import { debounce, rafSchedule, getCurrentTheme } from '@/utils/index';
 import {
   INTEL_HOTSPOTS,
   CONFLICT_ZONES,
@@ -76,8 +37,47 @@ import {
   COMMODITY_HUBS,
   GULF_INVESTMENTS,
 } from '@/config';
-import type { GulfInvestment } from '@/types';
 import { resolveTradeRouteSegments, TRADE_ROUTES as TRADE_ROUTES_LIST, type TradeRouteSegment } from '@/config/trade-routes';
+import type { AirportDelayAlert } from '@/services/aviation';
+import type { ClimateAnomaly } from '@/services/climate';
+import type { IranEvent } from '@/services/conflict';
+import type { GpsJamHex } from '@/services/gps-interference';
+import { fetchMilitaryBases, type MilitaryBaseCluster as ServerBaseCluster } from '@/services/military-bases';
+import type {
+  MapLayers,
+  Hotspot,
+  NewsItem,
+  InternetOutage,
+  RelatedAsset,
+  AssetType,
+  AisDisruptionEvent,
+  AisDensityZone,
+  CableAdvisory,
+  RepairShip,
+  SocialUnrestEvent,
+  AIDataCenter,
+  MilitaryFlight,
+  MilitaryVessel,
+  MilitaryFlightCluster,
+  MilitaryVesselCluster,
+  NaturalEvent,
+  UcdpGeoEvent,
+  MapProtestCluster,
+  MapTechHQCluster,
+  MapTechEventCluster,
+  MapDatacenterCluster,
+  CyberThreat,
+  CableHealthRecord,
+  MilitaryBaseEnriched,
+} from '@/types';
+import type { DisplacementFlow } from '@/services/displacement';
+import type { Earthquake } from '@/services/earthquakes';
+import type { WeatherAlert } from '@/services/weather';
+import type { GulfInvestment } from '@/types';
+import { debounce, rafSchedule, getCurrentTheme } from '@/utils/index';
+import { tokenizeForMatch, matchKeyword, matchesAnyKeyword, findMatchingKeywords } from '@/utils/keyword-match';
+import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/services/i18n';
 import { MapPopup, type PopupType } from './MapPopup';
 import {
   updateHotspotEscalation,
@@ -94,7 +94,6 @@ import type { HappinessData } from '@/services/happiness-data';
 import type { RenewableInstallation } from '@/services/renewable-installations';
 import type { SpeciesRecovery } from '@/services/conservation-data';
 import { getCountriesGeoJson, getCountryAtCoordinates, getCountryBbox } from '@/services/country-geometry';
-import type { FeatureCollection, Geometry } from 'geojson';
 
 export type TimeRange = '1h' | '6h' | '24h' | '48h' | '7d' | 'all';
 export type DeckMapView = 'global' | 'america' | 'mena' | 'eu' | 'asia' | 'latam' | 'africa' | 'oceania';
@@ -2706,7 +2705,7 @@ export class DeckGLMap {
 
     const rawLayerId = info.layer?.id || '';
     const layerId = rawLayerId.endsWith('-ghost') ? rawLayerId.slice(0, -6) : rawLayerId;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const obj = info.object as any;
     const text = (value: unknown): string => escapeHtml(String(value ?? ''));
 

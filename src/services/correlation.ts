@@ -3,9 +3,9 @@
  * Core logic is in analysis-core.ts (shared with worker).
  */
 
-import type { ClusteredEvent, MarketData } from '@/types';
-import type { PredictionMarket } from '@/services/prediction';
 import { getSourceType } from '@/config/feeds';
+import type { PredictionMarket } from '@/services/prediction';
+import type { ClusteredEvent, MarketData } from '@/types';
 import {
   analyzeCorrelationsCore,
   type CorrelationSignalCore,

@@ -1,5 +1,5 @@
-import { mlWorker } from './ml-worker';
 import type { NewsItem } from '@/types';
+import { mlWorker } from './ml-worker';
 
 const DEFAULT_THRESHOLD = 0.85;
 const BATCH_SIZE = 20; // ML_THRESHOLDS.maxTextsPerBatch from ml-config.ts

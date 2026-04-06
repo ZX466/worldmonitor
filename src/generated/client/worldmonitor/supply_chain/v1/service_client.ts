@@ -122,7 +122,7 @@ export class SupplyChainServiceClient {
   }
 
   async getShippingRates(_req: GetShippingRatesRequest, options?: SupplyChainServiceCallOptions): Promise<GetShippingRatesResponse> {
-    let path = "/api/supply-chain/v1/get-shipping-rates";
+    const path = "/api/supply-chain/v1/get-shipping-rates";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -145,7 +145,7 @@ export class SupplyChainServiceClient {
   }
 
   async getChokepointStatus(_req: GetChokepointStatusRequest, options?: SupplyChainServiceCallOptions): Promise<GetChokepointStatusResponse> {
-    let path = "/api/supply-chain/v1/get-chokepoint-status";
+    const path = "/api/supply-chain/v1/get-chokepoint-status";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {
@@ -168,7 +168,7 @@ export class SupplyChainServiceClient {
   }
 
   async getCriticalMinerals(_req: GetCriticalMineralsRequest, options?: SupplyChainServiceCallOptions): Promise<GetCriticalMineralsResponse> {
-    let path = "/api/supply-chain/v1/get-critical-minerals";
+    const path = "/api/supply-chain/v1/get-critical-minerals";
     const url = this.baseURL + path;
 
     const headers: Record<string, string> = {

@@ -1,8 +1,8 @@
-import { Panel } from './Panel';
-import { t } from '@/services/i18n';
-import { escapeHtml } from '@/utils/sanitize';
 import { MarketServiceClient } from '@/generated/client/worldmonitor/market/v1/service_client';
 import type { ListStablecoinMarketsResponse } from '@/generated/client/worldmonitor/market/v1/service_client';
+import { t } from '@/services/i18n';
+import { escapeHtml } from '@/utils/sanitize';
+import { Panel } from './Panel';
 
 type StablecoinResult = ListStablecoinMarketsResponse;
 

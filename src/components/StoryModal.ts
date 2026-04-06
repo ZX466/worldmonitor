@@ -1,7 +1,7 @@
+import { t } from '@/services/i18n';
 import type { StoryData } from '@/services/story-data';
 import { renderStoryToCanvas } from '@/services/story-renderer';
 import { generateStoryDeepLink, getShareUrls, shareTexts } from '@/services/story-share';
-import { t } from '@/services/i18n';
 
 let modalEl: HTMLElement | null = null;
 let currentDataUrl: string | null = null;

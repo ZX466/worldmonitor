@@ -6,11 +6,11 @@
  * Extends Panel base class. Uses theme-aware colors via getCSSColor().
  */
 
-import { Panel } from './Panel';
 import * as d3 from 'd3';
 import type { RenewableEnergyData, RegionRenewableData, CapacitySeries } from '@/services/renewable-energy-data';
 import { getCSSColor } from '@/utils';
 import { replaceChildren } from '@/utils/dom-utils';
+import { Panel } from './Panel';
 
 export class RenewableEnergyPanel extends Panel {
   constructor() {

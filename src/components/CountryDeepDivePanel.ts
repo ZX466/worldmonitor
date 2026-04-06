@@ -1,15 +1,14 @@
 import type { CountryBriefSignals } from '@/app/app-context';
 import { getSourcePropagandaRisk, getSourceTier } from '@/config/feeds';
+import { PORTS } from '@/config/ports';
 import { getCountryCentroid, ME_STRIKE_BOUNDS } from '@/services/country-geometry';
 import type { CountryScore } from '@/services/country-instability';
 import { t } from '@/services/i18n';
-import { getNearbyInfrastructure } from '@/services/related-assets';
 import type { PredictionMarket } from '@/services/prediction';
+import { getNearbyInfrastructure , haversineDistanceKm } from '@/services/related-assets';
 import type { AssetType, NewsItem, RelatedAsset } from '@/types';
-import { sanitizeUrl, escapeHtml } from '@/utils/sanitize';
 import { getCSSColor } from '@/utils';
-import { PORTS } from '@/config/ports';
-import { haversineDistanceKm } from '@/services/related-assets';
+import { sanitizeUrl, escapeHtml } from '@/utils/sanitize';
 import type {
   CountryBriefPanel,
   CountryIntelData,

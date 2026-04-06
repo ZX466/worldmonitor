@@ -77,7 +77,7 @@ export class PredictionServiceClient {
   }
 
   async listPredictionMarkets(req: ListPredictionMarketsRequest, options?: PredictionServiceCallOptions): Promise<ListPredictionMarketsResponse> {
-    let path = "/api/prediction/v1/list-prediction-markets";
+    const path = "/api/prediction/v1/list-prediction-markets";
     const params = new URLSearchParams();
     if (req.pageSize != null && req.pageSize !== 0) params.set("page_size", String(req.pageSize));
     if (req.cursor != null && req.cursor !== "") params.set("cursor", String(req.cursor));

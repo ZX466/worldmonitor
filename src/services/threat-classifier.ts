@@ -12,6 +12,11 @@ export interface ThreatClassification {
   source: 'keyword' | 'ml' | 'llm';
 }
 
+import {
+  IntelligenceServiceClient,
+  ApiError,
+  type ClassifyEventResponse,
+} from '@/generated/client/worldmonitor/intelligence/v1/service_client';
 import { getCSSColor } from '@/utils';
 
 /** @deprecated Use getThreatColor() instead for runtime CSS variable reads */
@@ -383,11 +388,6 @@ export function classifyByKeyword(title: string, variant = 'full'): ThreatClassi
 }
 
 // Batched AI classification — collects headlines then fires parallel classifyEvent RPCs
-import {
-  IntelligenceServiceClient,
-  ApiError,
-  type ClassifyEventResponse,
-} from '@/generated/client/worldmonitor/intelligence/v1/service_client';
 
 const classifyClient = new IntelligenceServiceClient('', { fetch: (...args) => globalThis.fetch(...args) });
 
@@ -409,12 +409,12 @@ function toThreat(resp: ClassifyEventResponse): ThreatClassification | null {
   };
 }
 
-type BatchJob = {
+interface BatchJob {
   title: string;
   variant: string;
   resolve: (v: ThreatClassification | null) => void;
   attempts?: number;
-};
+}
 
 const BATCH_SIZE = 20;
 const BATCH_DELAY_MS = 500;

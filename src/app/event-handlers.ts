@@ -1,24 +1,16 @@
 import type { AppContext, AppModule } from '@/app/app-context';
-import type { PanelConfig } from '@/types';
-import type { MapView } from '@/components';
-import type { ClusteredEvent } from '@/types';
-import type { DashboardSnapshot } from '@/services/storage';
+import type { MapView ,
+  CIIPanel,
+  PredictionPanel} from '@/components';
 import {
   PlaybackControl,
   StatusPanel,
   MobileWarningModal,
-  PizzIntIndicator,
-  CIIPanel,
-  PredictionPanel,
+  PizzIntIndicator
 } from '@/components';
-import {
-  buildMapUrl,
-  debounce,
-  saveToStorage,
-  ExportPanel,
-  getCurrentTheme,
-  setTheme,
-} from '@/utils';
+import { detectPlatform, allButtons, buttonsForPlatform } from '@/components/DownloadBanner';
+import type { Platform } from '@/components/DownloadBanner';
+import { UnifiedSettings } from '@/components/UnifiedSettings';
 import {
   STORAGE_KEYS,
   SITE_VARIANT,
@@ -41,14 +33,21 @@ import {
   trackPanelToggled,
   trackDownloadClicked,
 } from '@/services/analytics';
-import { detectPlatform, allButtons, buttonsForPlatform } from '@/components/DownloadBanner';
-import type { Platform } from '@/components/DownloadBanner';
-import { invokeTauri } from '@/services/tauri-bridge';
 import { dataFreshness } from '@/services/data-freshness';
-import { mlWorker } from '@/services/ml-worker';
-import { UnifiedSettings } from '@/components/UnifiedSettings';
 import { t } from '@/services/i18n';
+import { mlWorker } from '@/services/ml-worker';
+import type { DashboardSnapshot } from '@/services/storage';
+import { invokeTauri } from '@/services/tauri-bridge';
 import { TvModeController } from '@/services/tv-mode';
+import type { ClusteredEvent , PanelConfig } from '@/types';
+import {
+  buildMapUrl,
+  debounce,
+  saveToStorage,
+  ExportPanel,
+  getCurrentTheme,
+  setTheme,
+} from '@/utils';
 
 export interface EventHandlerCallbacks {
   updateSearchIndex: () => void;

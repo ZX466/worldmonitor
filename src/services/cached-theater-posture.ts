@@ -5,12 +5,12 @@
  * Persists to localStorage so data shows instantly on reload.
  */
 
-import type { TheaterPostureSummary } from './military-surge';
 import {
   MilitaryServiceClient,
   type GetTheaterPostureResponse,
   type TheaterPosture,
 } from '@/generated/client/worldmonitor/military/v1/service_client';
+import type { TheaterPostureSummary } from './military-surge';
 
 // ---- Sebuf client ----
 
