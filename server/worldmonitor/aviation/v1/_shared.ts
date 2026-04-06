@@ -1,4 +1,4 @@
-import { XMLParser } from 'fast-xml-parser';
+import { XMLParser, type JPathOrMatcher } from 'fast-xml-parser';
 import type {
   AirportDelayAlert,
   FlightDelayType,
@@ -27,8 +27,9 @@ const NOTAM_CLOSURE_QCODES = new Set(['FA', 'AH', 'AL', 'AW', 'AC', 'AM']);
 
 export const xmlParser = new XMLParser({
   ignoreAttributes: true,
-  isArray: (_name: string, jpath: string) => {
+  isArray: (_name: string, jPathOrMatcher: JPathOrMatcher, _isLeafNode: boolean, _isAttribute: boolean) => {
     // Force arrays for list items regardless of count to prevent single-item-as-object bug
+    const jpath = typeof jPathOrMatcher === 'string' ? jPathOrMatcher : jPathOrMatcher.toString();
     return /\.(Ground_Delay|Ground_Stop|Delay|Airport)$/.test(jpath);
   },
 });

@@ -21,7 +21,7 @@ const BROTLI_EXTENSIONS = new Set(['.js', '.mjs', '.css', '.html', '.svg', '.jso
 function brotliPrecompressPlugin(): Plugin {
   return {
     name: 'brotli-precompress',
-    apply: isProduction && enableBrotli ? 'build' : false, // 只在生产环境启用
+    apply: (isProduction && enableBrotli) ? 'build' : undefined, // 只在生产环境启用
     async writeBundle(outputOptions, bundle) {
       const outDir = outputOptions.dir;
       if (!outDir) return;
@@ -259,7 +259,7 @@ function sebufApiPlugin(): Plugin {
       ...militaryServerMod.createMilitaryServiceRoutes(militaryHandlerMod.militaryHandler, serverOptions),
       ...positiveEventsServerMod.createPositiveEventsServiceRoutes(positiveEventsHandlerMod.positiveEventsHandler, serverOptions),
       ...givingServerMod.createGivingServiceRoutes(givingHandlerMod.givingHandler, serverOptions),
-      ...tradeServerMod.createTradeServiceRoutes(tradeHandlerMod.tradeHandlerMod, serverOptions),
+      ...tradeServerMod.createTradeServiceRoutes(tradeHandlerMod.tradeHandler, serverOptions),
     ];
     cachedCorsMod = corsMod;
     return routerMod.createRouter(allRoutes);
@@ -318,7 +318,7 @@ function sebufApiPlugin(): Plugin {
           if (req.method === 'OPTIONS') {
             res.statusCode = 204;
             for (const [key, value] of Object.entries(corsHeaders)) {
-              res.setHeader(key, value);
+              res.setHeader(key, value as string | number | readonly string[]);
             }
             res.end();
             return;
@@ -328,7 +328,7 @@ function sebufApiPlugin(): Plugin {
             res.statusCode = 403;
             res.setHeader('Content-Type', 'application/json');
             for (const [key, value] of Object.entries(corsHeaders)) {
-              res.setHeader(key, value);
+              res.setHeader(key, value as string | number | readonly string[]);
             }
             res.end(JSON.stringify({ error: 'Origin not allowed' }));
             return;
@@ -346,7 +346,7 @@ function sebufApiPlugin(): Plugin {
               res.setHeader('Content-Type', 'application/json');
             }
             for (const [key, value] of Object.entries(corsHeaders)) {
-              res.setHeader(key, value);
+              res.setHeader(key, value as string | number | readonly string[]);
             }
             res.end(JSON.stringify({ error: res.statusCode === 405 ? 'Method not allowed' : 'Not found' }));
             return;
@@ -359,7 +359,7 @@ function sebufApiPlugin(): Plugin {
             res.setHeader(key, value);
           });
           for (const [key, value] of Object.entries(corsHeaders)) {
-            res.setHeader(key, value);
+            res.setHeader(key, value as string | number | readonly string[]);
           }
           res.end(await response.text());
         } catch (err) {
@@ -402,7 +402,7 @@ function rssProxyPlugin(): Plugin {
           if (!RSS_PROXY_ALLOWED_DOMAINS.has(parsed.hostname)) {
             res.statusCode = 403;
             res.setHeader('Content-Type', 'application/json');
-            res: end(JSON.stringify({ error: `Domain not allowed: ${parsed.hostname}` }));
+            res.end(JSON.stringify({ error: `Domain not allowed: ${parsed.hostname}` }));
             return;
           }
 
@@ -482,7 +482,7 @@ function youtubeLivePlugin(): Plugin {
             const block = html.substring(detailsIdx, detailsIdx + 5000);
             const vidMatch = block.match(/"videoId":"([a-zA-Z0-9_-]{11})"/);
             const liveMatch = block.match(/"isLive"\s*:\s*true/);
-            if (vidMatch && liveMatch) {
+            if (vidMatch && vidMatch[1] && liveMatch) {
               videoId = vidMatch[1];
             }
           }

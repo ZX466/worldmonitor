@@ -27,7 +27,8 @@ function cleanupMemoryCache(): void {
   if (memoryCache.size > MEMORY_CACHE_MAX_SIZE) {
     const keys = Array.from(memoryCache.keys());
     for (let i = 0; i < memoryCache.size - MEMORY_CACHE_MAX_SIZE; i++) {
-      memoryCache.delete(keys[i]);
+      const key = keys[i];
+      if (key) memoryCache.delete(key);
     }
   }
 }
