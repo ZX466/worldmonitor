@@ -101,6 +101,28 @@ World Monitor 是一个复杂的全栈应用，用于监控全球各类事件（
 
 **解决方案**: vercel.json 添加 `buildCommand: "npx vite build"` 直接使用 vite，跳过 tsc
 
+### 单元测试修复 (2026-04-06 续)
+
+**问题**: GitHub Actions 上单元测试失败（10/25 failed）
+
+**原因**:
+1. RSS 工具函数未导出（`getFeedScope`, `parseFeedScope`, `getPersistentFeedKey`）
+2. `requestAnimationFrame` 在 Node.js 环境中不存在
+3. `formatTime` 未来日期测试断言不正确
+
+**解决方案**:
+1. 在 `src/services/rss.ts` 中添加函数导出
+2. 创建 `tests/unit/setup.ts` mock `requestAnimationFrame` 和 `localStorage`
+3. 修复 `utils.test.ts` 中未来日期测试的断言
+
+**提交记录**:
+| 日期 | 提交 | 说明 |
+|------|------|------|
+| 2026-04-06 | 7a1d38f | fix: resolve all unit test failures |
+| 2026-04-06 | a3bade3 | fix: resolve all TypeScript type errors |
+| 2026-04-06 | df53aa8 | docs: update memory |
+| 2026-04-06 | af55c92 | vercel: use vite build directly to skip tsc errors |
+
 ## AI 模型配置
 
 项目使用多级降级策略：
