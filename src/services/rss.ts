@@ -27,11 +27,11 @@ function fromSerializable(items: Array<Omit<NewsItem, 'pubDate'> & { pubDate: st
   return items.map(item => ({ ...item, pubDate: new Date(item.pubDate) }));
 }
 
-function getFeedScope(feedName: string, lang: string): string {
+export function getFeedScope(feedName: string, lang: string): string {
   return `${feedName}${FEED_SCOPE_SEPARATOR}${lang}`;
 }
 
-function parseFeedScope(feedScope: string): { feedName: string; lang: string } {
+export function parseFeedScope(feedScope: string): { feedName: string; lang: string } {
   const splitIndex = feedScope.lastIndexOf(FEED_SCOPE_SEPARATOR);
   if (splitIndex === -1) return { feedName: feedScope, lang: 'en' };
   return {
@@ -40,9 +40,11 @@ function parseFeedScope(feedScope: string): { feedName: string; lang: string } {
   };
 }
 
-function getPersistentFeedKey(feedScope: string): string {
+export function getPersistentFeedKey(feedScope: string): string {
   return `feed:${feedScope}`;
 }
+
+export { feedFailures };
 
 async function readPersistentFeed(key: string): Promise<NewsItem[] | null> {
   const entry = await getPersistentCache<Array<Omit<NewsItem, 'pubDate'> & { pubDate: string }>>(key);
