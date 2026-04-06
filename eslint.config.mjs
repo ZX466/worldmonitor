@@ -2,7 +2,6 @@ import js from '@eslint/js';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsparser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
-import tsconfig from 'eslint-import-resolver-typescript';
 
 export default [
   js.configs.recommended,
@@ -69,10 +68,68 @@ export default [
     },
   },
   {
-    files: ['api/**/*.js'],
+    files: ['api/**/*.js', 'api/**/*.mjs'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        fetch: 'readonly',
+        Request: 'readonly',
+        Response: 'readonly',
+        Headers: 'readonly',
+        AbortController: 'readonly',
+        AbortSignal: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        console: 'readonly',
+        crypto: 'readonly',
+        TextEncoder: 'readonly',
+        TextDecoder: 'readonly',
+        Buffer: 'readonly',
+      },
+    },
     rules: {
       'no-var': 'off',
       '@typescript-eslint/no-require-imports': 'off',
+      'no-undef': 'off',
+    },
+  },
+  {
+    files: ['server/**/*.ts'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        fetch: 'readonly',
+        Request: 'readonly',
+        Response: 'readonly',
+        Headers: 'readonly',
+        AbortController: 'readonly',
+        AbortSignal: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        console: 'readonly',
+        crypto: 'readonly',
+        TextEncoder: 'readonly',
+        TextDecoder: 'readonly',
+        Buffer: 'readonly',
+      },
+    },
+    rules: {
+      'no-undef': 'off',
+    },
+  },
+  {
+    files: ['*.config.js', '*.config.ts', 'middleware.ts'],
+    rules: {
+      'no-undef': 'off',
+      '@typescript-eslint/no-var-requires': 'off',
     },
   },
   {

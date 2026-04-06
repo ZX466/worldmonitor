@@ -33,7 +33,6 @@ function normalizeLevel(rawLevel) {
 export default function handler(req, res) {
   const url = new URL(req.url, `https://${req.headers.host}`);
   const countryCode = (url.searchParams.get('c') || '').toUpperCase();
-  const type = url.searchParams.get('t') || 'ciianalysis';
   const score = url.searchParams.get('s');
   const level = normalizeLevel(url.searchParams.get('l'));
 

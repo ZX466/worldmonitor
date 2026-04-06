@@ -212,7 +212,7 @@ export async function cachedFetchJson<T extends object>(
 
   const promise = fetcher()
     .then(async (result) => {
-      if (result != null) {
+      if (result !== null) {
         await setCachedJson(key, result, ttlSeconds);
       } else {
         await setCachedJson(key, NEG_SENTINEL, negativeTtlSeconds);
@@ -258,7 +258,7 @@ export async function cachedFetchJsonWithMeta<T extends object>(
 
   const promise = fetcher()
     .then(async (result) => {
-      if (result != null) {
+      if (result !== null) {
         await setCachedJson(key, result, ttlSeconds);
       } else {
         await setCachedJson(key, NEG_SENTINEL, negativeTtlSeconds);
