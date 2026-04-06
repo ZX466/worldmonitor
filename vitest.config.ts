@@ -1,16 +1,11 @@
 import { defineConfig } from 'vitest/config';
 import { resolve } from 'path';
 
-// Mock requestAnimationFrame for Node.js environment
-const mockRaf = (cb: FrameRequestCallback) => {
-  return setTimeout(() => cb(Date.now()), 0) as unknown as number;
-};
-if (typeof globalThis.requestAnimationFrame === 'undefined') {
-  globalThis.requestAnimationFrame = mockRaf;
-}
-if (typeof globalThis.cancelAnimationFrame === 'undefined') {
-  globalThis.cancelAnimationFrame = (id) => clearTimeout(id as unknown as ReturnType<typeof setTimeout>);
-}
+// Polyfills for Node.js environment - MUST be before any imports
+(globalThis as Record<string, unknown>).requestAnimationFrame = 
+  ((cb: FrameRequestCallback) => setTimeout(() => cb(Date.now()), 0)) as unknown as typeof requestAnimationFrame;
+(globalThis as Record<string, unknown>).cancelAnimationFrame = 
+  ((id: number) => clearTimeout(id as unknown as ReturnType<typeof setTimeout>)) as unknown as typeof cancelAnimationFrame;
 
 export default defineConfig({
   test: {
