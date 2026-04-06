@@ -393,7 +393,7 @@ const WEB_REDIRECT_PATHS = [
   /^\/api\/polymarket(?:\?|$)/,
   /^\/api\/ais-snapshot(?:\?|$)/,
 ];
-const ALLOWED_REDIRECT_HOSTS = /^https:\/\/([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)*worldmonitor\.app(:\d+)?$/;
+const ALLOWED_REDIRECT_HOSTS = /^https:\/\/([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)*(worldmonitor\.app|vercel\.app)(:\d+)?$/;
 
 function isAllowedRedirectTarget(url: string): boolean {
   try {
