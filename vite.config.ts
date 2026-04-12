@@ -374,9 +374,68 @@ function sebufApiPlugin(): Plugin {
 }
 
 // RSS代理域名白名单
+// 国际域名（International domains）
 const RSS_PROXY_ALLOWED_DOMAINS = new Set([
+  // 国际新闻源 International News Sources
   'feeds.rss.com', 'www.theguardian.com', 'feeds.npr.org', 'news.google.com',
-    // ... 其他域名保持不变
+  'feeds.bbci.co.uk', 'www.bbc.com', 'rss.cnn.com', 'www.cnn.com',
+  'feeds.reuters.com', 'www.reuters.com', 'rss.nytimes.com', 'www.nytimes.com',
+  'feeds.washingtonpost.com', 'www.washingtonpost.com',
+  'feeds.foxnews.com', 'www.foxnews.com',
+  'feeds.skynews.com', 'news.sky.com',
+  'feeds.euronews.com', 'www.euronews.com',
+  'feeds.dw.com', 'www.dw.com',
+  'feeds.france24.com', 'www.france24.com',
+  'feeds.aljazeera.com', 'www.aljazeera.com',
+  
+  // 中国新闻源（国内可直接访问） Chinese News Sources
+  'www.xinhuanet.com', 'xinhuanet.com',           // 新华社
+  'www.news.cn', 'news.cn',                       // 新华网
+  'www.chinanews.com', 'chinanews.com',           // 中国新闻网
+  'www.people.com.cn', 'people.com.cn',           // 人民网
+  'www.cctv.com', 'cctv.com',                     // 央视网
+  'news.cctv.com',                                // 央视新闻
+  'www.china.com.cn', 'china.com.cn',             // 中国网
+  'www.gmw.cn', 'gmw.cn',                         // 光明网
+  'www.ce.cn', 'ce.cn',                           // 中国经济网
+  'www.yicai.com', 'yicai.com',                   // 第一财经
+  'www.caixin.com', 'caixin.com',                 // 财新网
+  'www.jiemian.com', 'jiemian.com',               // 界面新闻
+  'www.36kr.com', '36kr.com',                     // 36氪
+  'www.huxiu.com', 'huxiu.com',                   // 虎嗅网
+  'www.guancha.cn', 'guancha.cn',                 // 观察者网
+  'www.thepaper.cn', 'thepaper.cn',               // 澎湃新闻
+  'www.globaltimes.cn', 'globaltimes.cn',         // 环球时报
+  'www.cankaoxiaoxi.com', 'cankaoxiaoxi.com',     // 参考消息
+  'www.stdaily.com', 'stdaily.com',               // 科技日报
+  'www.chinadaily.com.cn', 'chinadaily.com.cn',   // 中国日报
+  'www.chinadaily.com', 'chinadaily.com',         // 中国日报英文
+  
+  // 科技媒体 Tech Media
+  'www.leiphone.com', 'leiphone.com',             // 雷锋网
+  'www.iteye.com', 'iteye.com',                   // ITeye
+  'www.infoq.cn', 'infoq.cn',                     // InfoQ中文
+  'www.oschina.net', 'oschina.net',               // 开源中国
+  'www.csdn.net', 'csdn.net',                     // CSDN
+  'www.ithome.com', 'ithome.com',                 // IT之家
+  'www.pingwest.com', 'pingwest.com',             // 品玩
+  
+  // 财经媒体 Finance Media
+  'finance.sina.com.cn',                          // 新浪财经
+  'finance.qq.com',                               // 腾讯财经
+  'finance.eastmoney.com', 'eastmoney.com',       // 东方财富
+  'stock.xueqiu.com', 'xueqiu.com',               // 雪球
+  'www.cnstock.com', 'cnstock.com',               // 上海证券报
+  'www.cs.com.cn', 'cs.com.cn',                   // 中证网
+  
+  // RSS聚合平台 RSS Aggregators
+  'r.jina.ai',                                    // Jina AI RSS Reader
+  'rsshub.app', 'rsshub.liumingye.cn',           // RSSHub
+  
+  // 其他常用源 Other Common Sources
+  'feeds.feedburner.com',
+  'feedproxy.google.com',
+  'feeds.feedblitz.com',
 ]);
 
 function rssProxyPlugin(): Plugin {

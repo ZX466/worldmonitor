@@ -146,14 +146,72 @@ const VIEW_PRESETS: Record<DeckMapView, { longitude: number; latitude: number; z
 const MAP_INTERACTION_MODE: MapInteractionMode =
   import.meta.env.VITE_MAP_INTERACTION_MODE === 'flat' ? 'flat' : '3d';
 
-// Theme-aware basemap vector style URLs (English labels, no local scripts)
-// Happy variant uses self-hosted warm styles; default uses CARTO CDN
-const DARK_STYLE = SITE_VARIANT === 'happy'
-  ? '/map-styles/happy-dark.json'
-  : 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
-const LIGHT_STYLE = SITE_VARIANT === 'happy'
-  ? '/map-styles/happy-light.json'
-  : 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
+// Theme-aware basemap vector style URLs
+// Supports China-specific map providers for domestic network stability
+// Happy variant uses self-hosted warm styles; default uses configured provider
+
+/**
+ * Get map style URL based on environment configuration
+ * Priority: China provider > CARTO CDN
+ */
+function getMapStyleUrl(isDark: boolean): string {
+  const mapProvider = import.meta.env.VITE_MAP_PROVIDER || 'carto';
+  const tiandituKey = import.meta.env.VITE_TIANDITU_KEY || '';
+  
+  // China map providers
+  switch (mapProvider) {
+    case 'tianditu':
+      // 天地图（Tianditu）- 需要申请Key
+      if (tiandituKey) {
+        return isDark
+          ? `/api/china-map-proxy?provider=tianditu&style=dark&key=${tiandituKey}`
+          : `/api/china-map-proxy?provider=tianditu&style=light&key=${tiandituKey}`;
+      }
+      // 如果没有Key，使用GeoQ作为后备
+      console.warn('VITE_TIANDITU_KEY not set, falling back to GeoQ');
+      return '/map-styles/china-geoq-dark.json';
+      
+    case 'amap':
+      // 高德地图（Amap）- 瓦片服务不需要Key
+      return isDark
+        ? '/map-styles/china-amap-dark.json'
+        : '/map-styles/china-amap-light.json';
+      
+    case 'tencent':
+      // 腾讯地图（Tencent Map）
+      return isDark
+        ? '/map-styles/china-tencent-dark.json'
+        : '/map-styles/china-tencent-light.json';
+      
+    case 'geoq':
+      // 智图（GeoQ）- 无需Key，适合开发测试
+      return isDark
+        ? '/map-styles/china-geoq-dark.json'
+        : '/map-styles/china-geoq-light.json';
+      
+    case 'carto':
+    default:
+      // CARTO CDN（国际服务，可能需要VPN）
+      if (SITE_VARIANT === 'happy') {
+        return isDark
+          ? '/map-styles/happy-dark.json'
+          : '/map-styles/happy-light.json';
+      }
+      return isDark
+        ? 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
+        : 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
+  }
+}
+
+const DARK_STYLE = getMapStyleUrl(true);
+const LIGHT_STYLE = getMapStyleUrl(false);
+
+// Log map provider for debugging
+if (import.meta.env.DEV) {
+  console.log('[DeckGLMap] Map provider:', import.meta.env.VITE_MAP_PROVIDER || 'carto (default)');
+  console.log('[DeckGLMap] Dark style URL:', DARK_STYLE);
+  console.log('[DeckGLMap] Light style URL:', LIGHT_STYLE);
+}
 
 // Zoom thresholds for layer visibility and labels (matches old Map.ts)
 // Zoom-dependent layer visibility and labels
