@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "World Monitor",
-    "description": "AI驱动的全球态势感知"
+    "title": "天下观",
+    "description": "AI驱动的全球态势感知平台"
   },
   "countryBrief": {
     "identifying": "正在识别国家...",
@@ -37,7 +37,7 @@
       "displaced": "流离失所",
       "climate": "气候压力",
       "conflictEvents": "冲突事件",
-      "gpsJammingZones": "GPS Jamming Zones",
+      "gpsJammingZones": "GPS干扰区域",
       "activeStrikes": "活跃罢工",
       "aviationDisruptions": "机场中断"
     },

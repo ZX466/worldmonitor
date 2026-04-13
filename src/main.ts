@@ -191,8 +191,6 @@ import { installRuntimeFetchPatch, installWebApiRedirect } from '@/services/runt
 import { loadDesktopSecrets } from '@/services/runtime-config';
 import { applyStoredTheme } from '@/utils/theme-manager';
 import { App } from './App';
-import { initChineseTheme } from './utils/chinese-theme-manager';
-
 // Auto-reload on stale chunk 404s after deployment (Vite fires this for modulepreload failures).
 const chunkReloadStorageKey = installChunkReloadGuard(__APP_VERSION__);
 
@@ -219,24 +217,6 @@ loadDesktopSecrets().catch(() => {});
 
 // Apply stored theme preference before app initialization (safety net for inline script)
 applyStoredTheme();
-
-// 初始化中国风主题
-try {
-  initChineseTheme(true); // 自动应用主题
-} catch (error) {
-  console.warn('中国风主题初始化失败:', error);
-}
-
-// 初始化中国风主题增强功能
-try {
-  import('./utils/chinese-theme-quick-start').then(module => {
-    module.initChineseThemeEnhancements();
-  }).catch(() => {
-    // 静默失败
-  });
-} catch (error) {
-  // 静默失败
-}
 
 // Set data-variant on <html> so CSS theme overrides activate
 if (SITE_VARIANT && SITE_VARIANT !== 'full') {
